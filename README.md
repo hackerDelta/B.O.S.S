@@ -45,11 +45,11 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [React](https://reactjs.org) - The JavaScript library used for creating the user interfaces.
-* [React Native](https://reactnative.dev) - The framework used to build applications using React.
-* [Expo CLI](https://docs.expo.io) - The framework and platform that helps you develop, build, and deploy iOS, Android, and web applications by using the same JavaScript/TypeScript codebase.
-* [Node.js](https://nodejs.org/en/) - The JavaScript runtime environment used to execute code.
-* [yarn](https://classic.yarnpkg.com/en/) or ([npm](https://www.npmjs.com) - The package manager used to manage package dependencies.
+- [React](https://reactjs.org) - The JavaScript library used for creating the user interfaces.
+- [React Native](https://reactnative.dev) - The framework used to build applications using React.
+- [Expo CLI](https://docs.expo.io) - The framework and platform that helps you develop, build, and deploy iOS, Android, and web applications by using the same JavaScript/TypeScript codebase.
+- [Node.js](https://nodejs.org/en/) - The JavaScript runtime environment used to execute code.
+- [yarn](https://classic.yarnpkg.com/en/) or ([npm](https://www.npmjs.com) - The package manager used to manage package dependencies.
 
 ## Contributing
 
@@ -61,10 +61,10 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Courtney Edwards** - *Initial work* - [courtneycodes95](https://github.com/courtneycodes95)
-* **Hector Santana-Quintana** - *Initial work* [sanquinluis](https://github.com/sanquinluis)
-* **Nagi Sosa** - *Initial work* [Nova-Nagi](https://github.com/Nova-Nagi)
-* **Kristy Li** - *Initial work* [ahtae](https://github.com/ahtae)
+- **Courtney Edwards** - _Initial work_ - [courtneycodes95](https://github.com/courtneycodes95)
+- **Hector Santana-Quintana** - _Initial work_ [sanquinluis](https://github.com/sanquinluis)
+- **Nagi Sosa** - _Initial work_ [Nova-Nagi](https://github.com/Nova-Nagi)
+- **Kristy Li** - _Initial work_ [ahtae](https://github.com/ahtae)
 
 See also the list of [contributors](https://github.com/hackerDelta/capstone/graphs/contributors) who participated in this project.
 
@@ -74,4 +74,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* [Orlando Caraballo](https://github.com/orlandocaraballo/)
+- [Orlando Caraballo](https://github.com/orlandocaraballo/)
