@@ -17,7 +17,23 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config": {
+        "googleMapsApiKey": "<YOUR_API_KEY>"
+      },
+      "infoPlist": {
+          "UIBackgroundModes": [
+            "location",
+            "fetch"
+          ]
+      }
+    },
+    "android": {
+      "config": {
+         "googleMaps": {
+            "apiKey": "<YOUR_API_KEY>"
+         }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
