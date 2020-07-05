@@ -1,5 +1,5 @@
-const db = require('../db');
-const Business = require('../db/models/Business');
+const db = require('../server/db');
+const Business = require('../server/db/models/Business');
 
 const businessesToCreate = [
   {
@@ -431,46 +431,47 @@ const businessesToCreate = [
     display_phone: '(347) 763-0872',
     distance: 6033.399569109819,
   },
-]
+];
 
 async function seed() {
-  await db.sync({force: true})
-  console.log('db synced!')
+  await db.sync({ force: true });
+  console.log('db synced!');
 
   const businesses = await Promise.all(
-    businessesToCreate.map(({name, image_url, coordinates, location, phone}) =>
-      Business.create({
-        name,
-        imageUrl: image_url,
-        latitude: coordinates.latitude,
-        longitude: coordinates.longitude,
-        phone,
-        address: location.address1,
-        city: location.city,
-        postalCode: location.zip_code,
-        state: location.state,
-      })
+    businessesToCreate.map(
+      ({ name, image_url, coordinates, location, phone }) =>
+        Business.create({
+          name,
+          imageUrl: image_url,
+          latitude: coordinates.latitude,
+          longitude: coordinates.longitude,
+          phone,
+          address: location.address1,
+          city: location.city,
+          postalCode: location.zip_code,
+          state: location.state,
+        })
     )
-  )
+  );
 
-  console.log(`seeded ${businesses.length} businesses`)
-  console.log(`seeded successfully`)
+  console.log(`seeded ${businesses.length} businesses`);
+  console.log(`seeded successfully`);
 }
 
 async function runSeed() {
-  console.log('seeding...')
+  console.log('seeding...');
   try {
-    await seed()
+    await seed();
   } catch (err) {
-    console.error(err)
-    process.exitCode = 1
+    console.error(err);
+    process.exitCode = 1;
   } finally {
-    console.log('closing db connection')
-    await db.close()
-    console.log('db connection closed')
+    console.log('closing db connection');
+    await db.close();
+    console.log('db connection closed');
   }
 }
 
 if (module === require.main) {
-  runSeed()
+  runSeed();
 }

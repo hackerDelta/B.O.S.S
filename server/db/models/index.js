@@ -8,5 +8,5 @@ Comment.belongsTo(Business);
 module.exports = {
   db,
   Business,
-  Comment
+  Comment,
 };
