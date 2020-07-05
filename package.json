@@ -11,6 +11,20 @@
     "seed": "node ./script/seed.js",
     "start-server": "nodemon ./src/index"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier --write",
+      "npm run lint-fix"
+    ],
+    "*.{css,scss,json,md}": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "axios": "^0.19.2",
     "bcrypt": "^5.0.0",
@@ -42,4 +56,16 @@
   },
   "private": true,
   "proxy": "http://localhost:3001"
+}
+    "babel-eslint": "^8.2.6",
+    "babel-preset-expo": "~8.1.0",
+    "eslint": "^5.0.1",
+    "eslint-config-fullstack": "^6.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-react": "^7.10.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5"
+  },
+  "private": true
 }
