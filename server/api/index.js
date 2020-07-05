@@ -6,21 +6,21 @@ const PORT = 3001;
 app.get('/api/businesses', async (req, res, next) => {
   try {
     const businesses = await Business.findAll();
-    console.log("here i am")
+    console.log('here i am');
 
-    res.status(200).json(businesses)
+    res.status(200).json(businesses);
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 });
 
 const server = app.listen(PORT, () =>
-  console.log(`Mixing it up on port ${PORT}`));
+  console.log(`Mixing it up on port ${PORT}`)
+);
 
-  // set up our socket control center
-  // const io = socketio(server);
-  // require('./socket')(io);
-
+// set up our socket control center
+// const io = socketio(server);
+// require('./socket')(io);
 
 // This evaluates as true when this file is run directly from the command line,
 // i.e. when we say 'node server/index.js' (or 'nodemon server/index.js', or 'nodemon server', etc)
@@ -28,8 +28,6 @@ const server = app.listen(PORT, () =>
 // if we wanted to require our app in a test spec
 
 module.exports = app;
-
-
 
 // const path = require('path');
 // const express = require('express');

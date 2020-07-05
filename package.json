@@ -9,10 +9,10 @@
     "eject": "expo eject",
     "lint": "eslint ./ --ignore-path .gitignore",
     "lint-fix": "npm run lint -- --fix",
-    "prettify": "prettier --write \"**/*.{js,jsx,json,css,scss,md}\""
+    "prettify": "prettier --write \"**/*.{js,jsx,json,css,scss,md}\"",
     "fix-js": "eslint-auto-fix",
     "seed": "node ./script/seed.js",
-    "start-server": "nodemon ./src/index"
+    "start-server": "nodemon ./server/api/index"
   },
   "husky": {
     "hooks": {
