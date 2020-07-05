@@ -74,4 +74,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-- [Orlando Carallabo](https://github.com/orlandocaraballo/)
+- [Orlando Caraballo](https://github.com/orlandocaraballo/)
