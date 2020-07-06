@@ -9,7 +9,7 @@ class BusinessesList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      businesses: [],
+      businesses: []
     };
   }
 
