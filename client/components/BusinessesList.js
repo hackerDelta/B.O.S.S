@@ -22,7 +22,7 @@ const BusinessesList = () => {
         title: business.name,
         imageUrl: business.imageUrl,
         longitude: Number(business.longitude),
-        latitude: Number(business.latitude),
+        latitude: Number(business.latitude)
       }));
 
       setBusinesses(arrayOfBusinesses);
@@ -64,7 +64,7 @@ const BusinessesList = () => {
               height: 500,
               marginTop: 40,
               marginLeft: 20,
-              marginRight: 20,
+              marginRight: 20
             }}
             provider={PROVIDER_GOOGLE}
             showsUserLocation={true}
@@ -72,7 +72,7 @@ const BusinessesList = () => {
               latitude: location.coords.latitude,
               longitude: location.coords.longitude,
               latitudeDelta: 0.92,
-              longitudeDelta: 0.92,
+              longitudeDelta: 0.92
             }}
             zoomEnabled={true}
             scrollEnabled={true}
@@ -101,14 +101,14 @@ const styles = StyleSheet.create({
     marginTop: 50,
     paddingTop: 10,
     fontSize: 40,
-    textAlign: 'center',
+    textAlign: 'center'
   },
   errorStyle: {
     color: 'red',
     textAlign: 'center',
     marginTop: 10,
-    fontWeight: 'bold',
-  },
+    fontWeight: 'bold'
+  }
 });
 
 export default BusinessesList;

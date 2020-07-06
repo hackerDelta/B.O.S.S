@@ -22,13 +22,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#F0EEEE',
     borderRadius: 5,
     borderWidth: 1,
-    textAlign: 'center',
+    textAlign: 'center'
   },
   imageStyle: {
     flex: 1,
     margin: 10,
-    fontSize: 18,
-  },
+    fontSize: 18
+  }
 });
 
 export default Business;
