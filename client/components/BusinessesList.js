@@ -4,7 +4,7 @@ import { Title } from 'react-native-paper';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import axios from 'axios';
-import Business from './components/Business';
+import Business from './Business';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 
 const BusinessesList = () => {
