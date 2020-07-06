@@ -18,6 +18,17 @@ To get acclimated, follow the steps below:
 1. Fork and clone this repository.
 2. Install [Expo CLI](https://docs.expo.io/get-started/installation/).
 3. Run cd capstone and npm install or yarn install (depending on which package manager you have installed) to install the necessary packages.
+4. Create a database called capstone and capstone-test.
+5. Follow these [steps](https://developers.google.com/maps/gmp-get-started) and create a Google Maps API key.
+6. Depending on your preferences either follow step i or step ii.
+   i) Create a file called .env and store your Google Maps API key there as GOOGLE_MAPS_API_KEY. Your file should look something like:
+
+```
+GOOGLE_MAPS_API_KEY=<YOUR_API_KEY>
+```
+
+and then run node createAppJSONFile.js in the terminal, which will automatically create an app.json file.
+ii) Go to app.json and replace everywhere where it says "<YOUR_API_KEY>" with your newly created Google Maps API key.
 
 ## Running the tests
 
@@ -50,6 +61,13 @@ Add additional notes about how to deploy this on a live system
 - [Expo CLI](https://docs.expo.io) - The framework and platform that helps you develop, build, and deploy iOS, Android, and web applications by using the same JavaScript/TypeScript codebase.
 - [Node.js](https://nodejs.org/en/) - The JavaScript runtime environment used to execute code.
 - [yarn](https://classic.yarnpkg.com/en/) or ([npm](https://www.npmjs.com) - The package manager used to manage package dependencies.
+- [Express](https://expressjs.com) - The JavaScript library used to handle HTTP requests.
+- [Sequelize](https://sequelize.org) - A promise-based Node.js Object-relational mapping used with Postgres.
+- [Axios](https://github.com/axios/axios) - The JavaScript library used to make HTTP requests.
+- [ESlint](https://eslint.org) - The tool used to maintain code quality.
+- [Prettier](https://prettier.io) - The tool used to format code.
+- [React Navigation](https://reactnavigation.org) - The JavaScript library used for routing and navigation in React Native Applications.
+- [React Native Paper](https://callstack.github.io/react-native-paper/) - The JavaScript library used to customize screens with production-ready components.
 
 ## Contributing
 
@@ -75,3 +93,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 - [Orlando Caraballo](https://github.com/orlandocaraballo/)
+- [Stacey Eliuk](https://github.com/hotpinkpoliticalmatrix)
