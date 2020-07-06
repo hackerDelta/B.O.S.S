@@ -5,13 +5,15 @@ const Comment = db.define('comment', {
   comment: {
     type: Sequelize.TEXT,
     allowNull: false,
-    validation: {},
+    validate: {
+      notEmpty: true,
+    },
   },
   stars: {
     type: Sequelize.INTEGER,
     allowNull: false,
-    validation: {
-      isEmpty: false,
+    validate: {
+      notEmpty: true,
     },
   },
 });
