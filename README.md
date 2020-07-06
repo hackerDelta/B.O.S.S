@@ -20,15 +20,13 @@ To get acclimated, follow the steps below:
 3. Run cd capstone and npm install or yarn install (depending on which package manager you have installed) to install the necessary packages.
 4. Create a database called capstone and capstone-test.
 5. Follow these [steps](https://developers.google.com/maps/gmp-get-started) and create a Google Maps API key.
-6. Depending on your preferences either follow step i or step ii.
+6. Depending on your preferences either follow step i or step ii.<br />
    i) Create a file called .env and store your Google Maps API key there as GOOGLE_MAPS_API_KEY. Your file should look something like:
-
-```
-GOOGLE_MAPS_API_KEY=<YOUR_API_KEY>
-```
-
-and then run node createAppJSONFile.js in the terminal, which will automatically create an app.json file.
-ii) Go to app.json and replace everywhere where it says "<YOUR_API_KEY>" with your newly created Google Maps API key.
+   ```
+   GOOGLE_MAPS_API_KEY=<YOUR_API_KEY>
+   ```
+   and then run node createAppJSONFile.js in the terminal, which will automatically create an app.json file.<br />
+   ii) Go to app.json and replace everywhere where it says "<YOUR_API_KEY>" with your newly created Google Maps API key.
 
 ## Running the tests
 
