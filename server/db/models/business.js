@@ -4,50 +4,80 @@ const { Sequelize } = db;
 const Business = db.define('business', {
   isVerified: {
     type: Sequelize.BOOLEAN,
-    defaultValue: false,
+    defaultValue: false
   },
   address: {
     type: Sequelize.TEXT,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   phone: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING
   },
   website: {
     type: Sequelize.STRING,
+    allowNull: true,
+    validate: {
+      notEmpty: true,
+      isUrl: true
+    }
   },
   hours: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
+    allowNull: true,
+    validate: {
+      notEmpty: true
+    }
   },
   name: {
     type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   city: {
     type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   state: {
     type: Sequelize.STRING,
+    allowNull: false
   },
   postalCode: {
     type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   longitude: {
-    type: Sequelize.STRING,
+    type: Sequelize.DECIMAL,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   latitude: {
-    type: Sequelize.STRING,
+    type: Sequelize.DECIMAL,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   imageUrl: {
     type: Sequelize.STRING,
-  },
-});
-
-Business.beforeCreate(async (business) => {
-  const regex = /(\d{3})(\d{3})(\d{4})/;
-  const found = business.phone.match(regex);
-
-  business.password = business.phone.length
-    ? `(${found[1]}) ${found[2]}-${found[3]}`
-    : '';
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+      isUrl: true
+    }
+  }
 });
 
 module.exports = Business;
