@@ -21,11 +21,11 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "prettier --write",
+      "npm run prettify",
       "npm run lint-fix"
     ],
     "*.{css,scss,json,md}": [
-      "prettier --write"
+      "npm run prettify"
     ]
   },
   "dependencies": {

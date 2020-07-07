@@ -5,15 +5,15 @@ const Comment = db.define('comment', {
   comment: {
     type: Sequelize.TEXT,
     allowNull: false,
-    validation: {},
+    validation: {}
   },
   stars: {
     type: Sequelize.INTEGER,
     allowNull: false,
     validation: {
-      isEmpty: false,
-    },
-  },
+      isEmpty: false
+    }
+  }
 });
 
 module.exports = Comment;

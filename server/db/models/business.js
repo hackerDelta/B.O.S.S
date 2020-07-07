@@ -4,41 +4,41 @@ const { Sequelize } = db;
 const Business = db.define('business', {
   isVerified: {
     type: Sequelize.BOOLEAN,
-    defaultValue: false,
+    defaultValue: false
   },
   address: {
-    type: Sequelize.TEXT,
+    type: Sequelize.TEXT
   },
   phone: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING
   },
   website: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING
   },
   hours: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING
   },
   name: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING
   },
   city: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING
   },
   state: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING
   },
   postalCode: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING
   },
   longitude: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING
   },
   latitude: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING
   },
   imageUrl: {
-    type: Sequelize.STRING,
-  },
+    type: Sequelize.STRING
+  }
 });
 
 Business.beforeCreate(async (business) => {
