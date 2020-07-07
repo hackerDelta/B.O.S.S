@@ -3,10 +3,11 @@ const Business = require('./business');
 const Comment = require('./comment');
 const User = require('./user');
 
-Business.hasOne(User);
+Business.belongsTo(User);
+User.hasMany(Business);
 
-User.hasMany(Business, { through: Comment });
-Business.hasMany(User, { through: Comment });
+User.belongsToMany(Business, { through: Comment });
+Business.belongsToMany(User, { through: Comment });
 
 module.exports = {
   db,
