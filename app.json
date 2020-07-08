@@ -20,17 +20,14 @@
         "googleMapsApiKey": "<YOUR_API_KEY>"
       },
       "infoPlist": {
-          "UIBackgroundModes": [
-            "location",
-            "fetch"
-          ]
+        "UIBackgroundModes": ["location", "fetch"]
       }
     },
     "android": {
       "config": {
-         "googleMaps": {
-            "apiKey": "<YOUR_API_KEY>"
-         }
+        "googleMaps": {
+          "apiKey": "<YOUR_API_KEY>"
+        }
       }
     },
     "web": {
