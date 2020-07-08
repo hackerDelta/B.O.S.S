@@ -4,7 +4,8 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  SafeAreaView
 } from 'react-native';
 import { Title } from 'react-native-paper';
 import * as Location from 'expo-location';
@@ -96,11 +97,13 @@ const BusinessesList = ({ navigation }) => {
   ) : null;
 
   return (
-    <ScrollView>
-      <Title style={styles.titleStyle}>Businesses</Title>
-      <Text style={styles.errorStyle}>{errorMessage}</Text>
-      {output}
-    </ScrollView>
+    <SafeAreaView>
+      <ScrollView>
+        <Title style={styles.titleStyle}>Businesses</Title>
+        <Text style={styles.errorStyle}>{errorMessage}</Text>
+        {output}
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
