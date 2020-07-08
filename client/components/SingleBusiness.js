@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
-import { Card, Title, Paragraph, DataTable } from 'react-native-paper';
+import { View, StyleSheet, Text, ScrollView, SafeAreaView } from 'react-native';
+import { Card, Title, Paragraph } from 'react-native-paper';
 import moment from 'moment';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import Comments from './Comments';
@@ -59,50 +59,55 @@ const SingleBusiness = ({ route, navigation }) => {
     : 0;
 
   return (
-    <ScrollView>
-      <View style={styles.backgroundStyle}>
-        <Title style={styles.titleStyle}>{name}</Title>
-        <Rating
-          type="custom"
-          ratingCount={5}
-          imageSize={20}
-          startingValue={calculatedTotalRating}
-          readonly={true}
-        />
-        <Card.Cover style={styles.imageStyle} source={{ uri: `${imageUrl}` }} />
-        <View style={styles.container}>
-          <Text style={styles.textStyle}>Location</Text>
-          <Paragraph
-            style={styles.paragraphStyle}
-          >{`${address} \n${city}, ${state} ${postalCode} \n ${phone}`}</Paragraph>
-          <MapView
-            style={styles.mapStyle}
-            provider={PROVIDER_GOOGLE}
-            showsUserLocation={true}
-            region={{
-              latitude: Number(latitude),
-              longitude: Number(longitude),
-              latitudeDelta: 0.1,
-              longitudeDelta: 0.1
-            }}
-            zoomEnabled={true}
-            scrollEnabled={true}
-            showCompass={true}
-            rotateEnabled={false}
-          >
-            <Marker
-              coordinate={{
+    <SafeAreaView>
+      <ScrollView>
+        <View style={styles.backgroundStyle}>
+          <Title style={styles.titleStyle}>{name}</Title>
+          <Rating
+            type="custom"
+            ratingCount={5}
+            imageSize={20}
+            startingValue={calculatedTotalRating}
+            readonly={true}
+          />
+          <Card.Cover
+            style={styles.imageStyle}
+            source={{ uri: `${imageUrl}` }}
+          />
+          <View style={styles.container}>
+            <Text style={styles.textStyle}>Location</Text>
+            <Paragraph
+              style={styles.paragraphStyle}
+            >{`${address} \n${city}, ${state} ${postalCode} \n ${phone}`}</Paragraph>
+            <MapView
+              style={styles.mapStyle}
+              provider={PROVIDER_GOOGLE}
+              showsUserLocation={true}
+              region={{
                 latitude: Number(latitude),
-                longitude: Number(longitude)
+                longitude: Number(longitude),
+                latitudeDelta: 0.1,
+                longitudeDelta: 0.1
               }}
-              title={name}
-            />
-          </MapView>
+              zoomEnabled={true}
+              scrollEnabled={true}
+              showCompass={true}
+              rotateEnabled={false}
+            >
+              <Marker
+                coordinate={{
+                  latitude: Number(latitude),
+                  longitude: Number(longitude)
+                }}
+                title={name}
+              />
+            </MapView>
+          </View>
+          {hoursOutput}
+          <Comments comments={comments} />
         </View>
-        {hoursOutput}
-        <Comments comments={comments} />
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
