@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import {
+  ScrollView,
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity
+} from 'react-native';
 import { Title } from 'react-native-paper';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
@@ -7,7 +13,7 @@ import axios from 'axios';
 import Business from './Business';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 
-const BusinessesList = () => {
+const BusinessesList = ({ navigation }) => {
   const [businesses, setBusinesses] = useState([]);
   const [markers, setMarkers] = useState([]);
   const [location, setLocation] = useState(null);
@@ -52,61 +58,68 @@ const BusinessesList = () => {
     }
   }, []);
 
+  const output = location ? (
+    <View>
+      <MapView
+        style={styles.mapStyle}
+        provider={PROVIDER_GOOGLE}
+        showsUserLocation={true}
+        region={{
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+          latitudeDelta: 0.1,
+          longitudeDelta: 0.1
+        }}
+        zoomEnabled={true}
+        scrollEnabled={true}
+        showCompass={true}
+        rotateEnabled={false}
+      >
+        {markers.map((marker) => (
+          <Marker key={marker.id} coordinate={marker} title={marker.title} />
+        ))}
+      </MapView>
+      {businesses.map((business) => (
+        <TouchableOpacity
+          key={business.id}
+          activeOpacity={1.0}
+          onPress={() =>
+            navigation.navigate('SingleBusiness', {
+              business
+            })
+          }
+        >
+          <Business business={business} />
+        </TouchableOpacity>
+      ))}
+    </View>
+  ) : null;
+
   return (
     <ScrollView>
       <Title style={styles.titleStyle}>Businesses</Title>
       <Text style={styles.errorStyle}>{errorMessage}</Text>
-      {location ? (
-        <View>
-          <MapView
-            style={{
-              alignSelf: 'stretch',
-              height: 500,
-              marginTop: 40,
-              marginLeft: 20,
-              marginRight: 20
-            }}
-            provider={PROVIDER_GOOGLE}
-            showsUserLocation={true}
-            region={{
-              latitude: location.coords.latitude,
-              longitude: location.coords.longitude,
-              latitudeDelta: 0.92,
-              longitudeDelta: 0.92
-            }}
-            zoomEnabled={true}
-            scrollEnabled={true}
-            showCompass={true}
-            rotateEnabled={false}
-          >
-            {markers.map((marker) => (
-              <Marker
-                key={marker.id}
-                coordinate={marker}
-                title={marker.title}
-              />
-            ))}
-          </MapView>
-          {businesses.map((business) => (
-            <Business key={business.id} business={business} />
-          ))}
-        </View>
-      ) : null}
+      {output}
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  mapStyle: {
+    alignSelf: 'stretch',
+    height: 500,
+    margin: '5%'
+  },
   titleStyle: {
-    marginTop: 50,
-    paddingTop: 10,
+    marginTop: '12%',
+    paddingTop: '5%',
     fontSize: 40,
     textAlign: 'center'
   },
   errorStyle: {
     color: 'red',
     textAlign: 'center',
-    marginTop: 10,
+    marginTop: '1%',
     fontWeight: 'bold'
   }
 });

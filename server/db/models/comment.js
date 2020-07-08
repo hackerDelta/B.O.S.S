@@ -9,10 +9,19 @@ const Comment = db.define('comment', {
       notEmpty: true
     }
   },
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
   stars: {
     type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
+      min: 0,
+      max: 5,
       notEmpty: true
     }
   }

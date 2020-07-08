@@ -77,6 +77,14 @@ const Business = db.define('business', {
       notEmpty: true,
       isUrl: true
     }
+  },
+  isClosed: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   }
 });
 

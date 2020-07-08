@@ -1,12 +1,14 @@
 const express = require('express');
-const Business = require('../db/models/business');
+const { Business, Comment, User } = require('../db/models');
+
 const app = express();
 const PORT = 3001;
 
 app.get('/api/businesses', async (req, res, next) => {
   try {
-    const businesses = await Business.findAll();
-    console.log('here i am');
+    const businesses = await Business.findAll({
+      include: [{ model: Comment, include: { model: User } }]
+    });
 
     res.status(200).json(businesses);
   } catch (err) {
