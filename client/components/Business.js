@@ -9,7 +9,7 @@ const Business = ({ business }) => {
     <View style={styles.backgroundStyle}>
       <Title style={styles.textStyle}>{name}</Title>
       <Paragraph
-        style={styles.textStyle}
+        style={styles.paragraphStyle}
       >{`${address} \n${city}, ${state} ${postalCode} \n ${phone}`}</Paragraph>
       <Card.Cover style={styles.imageStyle} source={{ uri: `${imageUrl}` }} />
     </View>
@@ -19,7 +19,6 @@ const Business = ({ business }) => {
 const styles = StyleSheet.create({
   backgroundStyle: {
     margin: '5%',
-    backgroundColor: '#F0EEEE',
     borderRadius: 5,
     borderWidth: 1,
     textAlign: 'center'
@@ -27,9 +26,12 @@ const styles = StyleSheet.create({
   textStyle: {
     textAlign: 'center'
   },
+  paragraphStyle: {
+    textAlign: 'center',
+    fontSize: 16
+  },
   imageStyle: {
-    flex: 1,
-    margin: '10%',
+    margin: '5%',
     fontSize: 18
   }
 });
