@@ -21,11 +21,11 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "prettier --write",
+      "npm run prettify",
       "npm run lint-fix"
     ],
     "*.{css,scss,json,md}": [
-      "prettier --write"
+      "npm run prettify"
     ]
   },
   "dependencies": {
@@ -38,6 +38,7 @@
     "bcrypt": "^5.0.0",
     "connect-session-sequelize": "^7.0.0",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
     "expo": "~38.0.8",
     "expo-location": "^8.2.1",
