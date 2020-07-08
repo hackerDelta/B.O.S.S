@@ -61,13 +61,7 @@ const BusinessesList = ({ navigation }) => {
   const output = location ? (
     <View>
       <MapView
-        style={{
-          alignSelf: 'stretch',
-          height: 500,
-          marginTop: 40,
-          marginLeft: 20,
-          marginRight: 20
-        }}
+        style={styles.mapStyle}
         provider={PROVIDER_GOOGLE}
         showsUserLocation={true}
         region={{
@@ -111,8 +105,13 @@ const BusinessesList = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  mapStyle: {
+    alignSelf: 'stretch',
+    height: 500,
+    margin: '5%'
+  },
   titleStyle: {
-    marginTop: '10%',
+    marginTop: '12%',
     paddingTop: '5%',
     fontSize: 40,
     textAlign: 'center'
