@@ -8,11 +8,11 @@ import SignIn from './client/components/SignIn';
 
 export default function App() {
   return (
-    // <NavigationContainer>
-    //   <Navigation />
-    //   <StatusBar style="auto" />
-    // </NavigationContainer>
-    <SignIn />
+    <NavigationContainer>
+      <Navigation />
+      <StatusBar style="auto" />
+    </NavigationContainer>
+    // <SignIn />
     // <SignUp />
   );
 }
