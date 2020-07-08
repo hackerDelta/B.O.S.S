@@ -6,16 +6,16 @@ const Comment = db.define('comment', {
     type: Sequelize.TEXT,
     allowNull: false,
     validate: {
-      notEmpty: true,
-    },
+      notEmpty: true
+    }
   },
   stars: {
     type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
-      notEmpty: true,
-    },
-  },
+      notEmpty: true
+    }
+  }
 });
 
 module.exports = Comment;
