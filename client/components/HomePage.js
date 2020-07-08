@@ -6,6 +6,7 @@ import {
   TouchableHighlight,
   SafeAreaView
 } from 'react-native';
+import SignUp from './SignUp';
 
 const image = require('../../assets/HomePage.png');
 
