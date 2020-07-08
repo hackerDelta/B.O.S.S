@@ -6,8 +6,8 @@ const User = require('./user');
 Business.belongsTo(User);
 User.hasMany(Business);
 
-User.belongsToMany(Business, { through: Comment });
-Business.belongsToMany(User, { through: Comment });
+Comment.belongsTo(User);
+Business.hasMany(Comment);
 
 module.exports = {
   db,
