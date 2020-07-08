@@ -108,18 +108,17 @@ const SingleBusiness = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
   backgroundStyle: {
-    margin: '10%',
-    paddingTop: '10%',
-    paddingBottom: '10%',
-    backgroundColor: 'white',
+    margin: '5%',
     borderRadius: 5,
     borderWidth: 1,
-    textAlign: 'center'
+    textAlign: 'center',
+    backgroundColor: 'white'
   },
   mapStyle: {
     alignSelf: 'center',
     height: 200,
-    width: 300,
+    width: 330,
+    marginTop: 10,
     marginLeft: 20,
     marginRight: 20
   },
