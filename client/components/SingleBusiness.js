@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
-import Business from './Business';
 import moment from 'moment';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+import Comments from './Comments';
 
 const SingleBusiness = ({ route, navigation }) => {
   const { business } = route.params;
@@ -18,7 +18,8 @@ const SingleBusiness = ({ route, navigation }) => {
     phone,
     imageUrl,
     hours,
-    isClosed
+    isClosed,
+    comments
   } = business;
   const JSONifiedHours = JSON.parse(hours)[0];
   const hoursOpened = [];
@@ -56,6 +57,7 @@ const SingleBusiness = ({ route, navigation }) => {
         >{`${address} \n${city}, ${state} ${postalCode} \n ${phone}`}</Paragraph>
         {hoursOutput}
         <Card.Cover style={styles.imageStyle} source={{ uri: `${imageUrl}` }} />
+        <Comments comments={comments} />
         <MapView
           style={{
             alignSelf: 'stretch',
