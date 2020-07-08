@@ -1,49 +1,44 @@
 import * as React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import { Card, Title, Paragraph } from 'react-native-paper';
-import StarRating from 'react-native-star-rating';
+import { View, StyleSheet, Text, Image } from 'react-native';
+import { Paragraph } from 'react-native-paper';
+import { Rating } from 'react-native-elements';
 
 const Comment = ({ information }) => {
-  const { title, comment, stars } = information;
+  const { title, comment, stars, user } = information;
+  const { firstName, lastName, image } = user;
 
   return (
     <View style={styles.backgroundStyle}>
-      <Title>{title}</Title>
-      <StarRating
-        disabled={false}
-        emptyStar={'ios-star-outline'}
-        fullStar={'ios-star'}
-        halfStar={'ios-star-half'}
-        iconSet={'Ionicons'}
-        maxStars={5}
-        rating={stars}
-        starSize={20}
-        fullStarColor={'red'}
+      <Text>{title}</Text>
+      <Rating
+        type="custom"
+        ratingCount={5}
+        imageSize={20}
+        startingValue={stars}
+        readonly={true}
+        style={styles.starStyle}
       />
+      <Image style={styles.imageStyle} source={{ uri: `${image}` }} />
+      <Paragraph>{`${firstName} ${lastName}`}</Paragraph>
       <Paragraph>{comment}</Paragraph>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
-  },
   backgroundStyle: {
     margin: '5%',
-    backgroundColor: '#F0EEEE',
-    textAlign: 'center'
+    marginBottom: '3%'
   },
-  textStyle: {
-    textAlign: 'center'
+  starStyle: {
+    alignSelf: 'flex-start',
+    marginTop: '2%'
   },
   imageStyle: {
-    flex: 1,
-    margin: '10%',
-    fontSize: 18
+    width: '10%',
+    height: 27,
+    margin: 0,
+    padding: 0
   }
 });
 
