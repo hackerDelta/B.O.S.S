@@ -5,7 +5,7 @@ import SignUp from './client/components/SignUp';
 import SignIn from './client/components/SignIn';
 import BusinessesList from './client/components/BusinessesList';
 import SingleBusiness from './client/components/SingleBusiness';
-import CommentForm from './client/components/CommentForm';
+// import CommentForm from './client/components/CommentForm';
 
 export default function App() {
   return (
@@ -16,7 +16,7 @@ export default function App() {
         <Scene key="signup" component={SignUp} title="Signup" />
         <Scene key="businesses" component={BusinessesList} title="Businesses" />
         <Scene key="business" component={SingleBusiness} title="Business" />
-        <Scene key="commentForm" component={CommentForm} title="commentForm" />
+        {/* <Scene key="commentForm" component={CommentForm} title="commentForm" /> */}
       </Stack>
     </Router>
   );
