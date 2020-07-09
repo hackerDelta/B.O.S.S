@@ -16,6 +16,4 @@ app.get('/api/businesses', async (req, res, next) => {
   }
 });
 
-const server = app.listen(PORT, () =>
-  console.log(`Mixing it up on port ${PORT}`)
-);
+app.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`));
