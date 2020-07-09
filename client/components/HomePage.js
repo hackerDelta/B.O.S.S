@@ -1,51 +1,66 @@
-import React from 'react';
+import * as React from 'react';
 import {
   StyleSheet,
   Text,
   ImageBackground,
-  TouchableHighlight,
-  SafeAreaView
+  SafeAreaView,
+  TouchableOpacity
 } from 'react-native';
-import SignUp from './SignUp';
+import { Actions } from 'react-native-router-flux';
+import { render } from 'react-dom';
 
 const image = require('../../assets/HomePage.png');
 
-export function HomeScreen() {
-  return (
-    <ImageBackground source={image} style={styles.image}>
-      <SafeAreaView style={styles.container}>
-        <Text style={styles.appTitle}>WELCOME!</Text>
-        <TouchableHighlight style={styles.button}>
-          <Text>Sign Up</Text>
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.button}>
-          <Text>Log In</Text>
-        </TouchableHighlight>
-      </SafeAreaView>
-    </ImageBackground>
-  );
+export default class HomeScreen extends React.Component {
+  signin() {
+    Actions.signin();
+  }
+  signup() {
+    Actions.signup();
+  }
+
+  render() {
+    return (
+      <ImageBackground source={image} style={styles.image}>
+        <SafeAreaView style={styles.container}>
+          <Text style={styles.appTitle}>WELCOME!</Text>
+          <TouchableOpacity style={styles.button} onPress={this.signup}>
+            <Text style={styles.textSign}>Sign Up</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={this.signin}>
+            <Text style={styles.textSign}>Log In</Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+      </ImageBackground>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: '65%',
+    marginBottom: '15%',
+    alignItems: 'center',
+    justifyContent: 'center'
+    // backgroundColor: '#97c4d9'
+  },
+  image: {
+    height: '100%',
+    width: '100%'
+  },
   appTitle: {
     fontSize: 25
   },
   button: {
     alignItems: 'center',
-    backgroundColor: 'teal',
+    backgroundColor: '#144d62',
     padding: '5%',
-    borderRadius: 10,
-    width: '50%'
+    marginVertical: 10,
+    borderRadius: 25,
+    width: 300
   },
-  container: {
-    flex: 1,
-    marginTop: '100%',
-    marginBottom: '15%',
-    alignItems: 'center',
-    justifyContent: 'space-between'
-  },
-  image: {
-    height: '100%',
-    width: '100%'
+  textSign: {
+    color: '#e2f2f0'
   }
 });

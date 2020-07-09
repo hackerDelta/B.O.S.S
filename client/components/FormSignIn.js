@@ -15,12 +15,16 @@ export default class FormSignIn extends React.Component {
           style={styles.inputBox}
           placeholder="Email"
           placeholderTextColor="#003344"
+          selectionColor="#fff"
+          keyboardType="email-address"
+          onSubmitEditing={() => this.password.focus()}
         />
         <TextInput
           style={styles.inputBox}
           placeholder="Password"
-          placeholderTextColor="#003344"
           secureTextEntry={true}
+          placeholderTextColor="#003344"
+          ref={(input) => (this.password = input)}
         />
         <TouchableOpacity style={styles.button}>
           <Text style={styles.textStyle}>{this.props.type}</Text>
