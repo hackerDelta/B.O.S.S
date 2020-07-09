@@ -3,25 +3,26 @@ import {
   View,
   Text,
   StyleSheet,
-  StatusBar,
   SafeAreaView,
   TouchableOpacity
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import Logo from './Logo';
-import FormSignIn from './FormSignIn';
 import FormSignUp from './FormSignUp';
 import SignIn from './SignIn';
 
 export default class SignUp extends React.Component {
+  goBack() {
+    Actions.signin();
+  }
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <StatusBar backgroundColor="#99573d" barStyle="light-content" />
         <Logo />
         <FormSignUp type="Signup" />
         <View style={styles.signuptext}>
           <Text style={styles.text}>Have an account?</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={this.goBack}>
             <Text style={styles.signupButton}> Login</Text>
           </TouchableOpacity>
         </View>

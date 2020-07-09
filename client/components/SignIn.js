@@ -7,12 +7,16 @@ import {
   SafeAreaView,
   TouchableOpacity
 } from 'react-native';
-import { Action } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import Logo from './Logo';
 import FormSignIn from './FormSignIn';
 import SignUp from './SignUp';
 
 export default class SignIn extends React.Component {
+  signup() {
+    Actions.signup();
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -21,7 +25,7 @@ export default class SignIn extends React.Component {
         <FormSignIn type="Signin" />
         <View style={styles.signuptext}>
           <Text style={styles.text}>Don't have an account?</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={this.signup}>
             <Text style={styles.signupButton}> Signup</Text>
           </TouchableOpacity>
         </View>
