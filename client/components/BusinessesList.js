@@ -4,7 +4,8 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  SafeAreaView
 } from 'react-native';
 import { Title } from 'react-native-paper';
 import * as Location from 'expo-location';
@@ -12,8 +13,9 @@ import * as Permissions from 'expo-permissions';
 import axios from 'axios';
 import Business from './Business';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+import { Actions } from 'react-native-router-flux';
 
-const BusinessesList = ({ navigation }) => {
+const BusinessesList = () => {
   const [businesses, setBusinesses] = useState([]);
   const [markers, setMarkers] = useState([]);
   const [location, setLocation] = useState(null);
@@ -83,11 +85,7 @@ const BusinessesList = ({ navigation }) => {
         <TouchableOpacity
           key={business.id}
           activeOpacity={1.0}
-          onPress={() =>
-            navigation.navigate('SingleBusiness', {
-              business
-            })
-          }
+          onPress={() => Actions.business({ business })}
         >
           <Business business={business} />
         </TouchableOpacity>
@@ -96,11 +94,13 @@ const BusinessesList = ({ navigation }) => {
   ) : null;
 
   return (
-    <ScrollView>
-      <Title style={styles.titleStyle}>Businesses</Title>
-      <Text style={styles.errorStyle}>{errorMessage}</Text>
-      {output}
-    </ScrollView>
+    <SafeAreaView>
+      <ScrollView>
+        <Title style={styles.titleStyle}>Businesses</Title>
+        <Text style={styles.errorStyle}>{errorMessage}</Text>
+        {output}
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
