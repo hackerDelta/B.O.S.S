@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Text,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  SafeAreaView
 } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 import moment from 'moment';
