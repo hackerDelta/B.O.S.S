@@ -1,11 +1,13 @@
 import * as React from 'react';
-import HomeScreen from './client/components/HomePage';
+import HomeScreen from './client/components/HomeScreen';
 import { Router, Stack, Scene } from 'react-native-router-flux';
-import SignUp from './client/components/SignUp';
-import SignIn from './client/components/SignIn';
-import BusinessesList from './client/components/BusinessesList';
-import SingleBusiness from './client/components/SingleBusiness';
-// import CommentForm from './client/components/CommentForm';
+import {
+  BusinessesList,
+  // CommentForm,
+  SignIn,
+  SignUp,
+  SingleBusiness
+} from './client/components';
 
 export default function App() {
   return (
