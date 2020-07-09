@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { StatusBar } from 'expo-status-bar';
 import {
   StyleSheet,
   Text,
@@ -7,7 +8,6 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { render } from 'react-dom';
 
 const image = require('../../assets/HomePage.png');
 
@@ -22,6 +22,7 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <ImageBackground source={image} style={styles.image}>
+        <StatusBar style="auto" />
         <SafeAreaView style={styles.container}>
           <Text style={styles.appTitle}>WELCOME!</Text>
           <TouchableOpacity style={styles.button} onPress={this.signup}>
@@ -43,7 +44,6 @@ const styles = StyleSheet.create({
     marginBottom: '15%',
     alignItems: 'center',
     justifyContent: 'center'
-    // backgroundColor: '#97c4d9'
   },
   image: {
     height: '100%',
