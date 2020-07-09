@@ -9,7 +9,6 @@ import {
 import { Actions } from 'react-native-router-flux';
 import Logo from './Logo';
 import FormSignUp from './FormSignUp';
-import SignIn from './SignIn';
 
 export default class SignUp extends React.Component {
   goBack() {
@@ -23,7 +22,7 @@ export default class SignUp extends React.Component {
         <View style={styles.signuptext}>
           <Text style={styles.text}>Have an account?</Text>
           <TouchableOpacity onPress={this.goBack}>
-            <Text style={styles.signupButton}> Login</Text>
+            <Text style={styles.signupButton}> Log in</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
