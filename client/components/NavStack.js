@@ -2,6 +2,9 @@ import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreen } from './HomePage';
 import { SettingsScreen, ScreenA, ScreenB } from './SampleScreens';
+import BusinessesList from './BusinessesList';
+import SingleBusiness from './SingleBusiness';
+import CommentForm from './CommentForm';
 
 const Tab = createBottomTabNavigator();
 
@@ -9,6 +12,9 @@ export default function App() {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Businesses" component={BusinessesList} />
+      <Tab.Screen name="SingleBusiness" component={SingleBusiness} />
+      <Tab.Screen name="CommentForm" component={CommentForm} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
       <Tab.Screen name="ScreenA" component={ScreenA} />
       <Tab.Screen name="ScreenB" component={ScreenB} />

@@ -1,13 +1,19 @@
 import * as React from 'react';
-import { View, StyleSheet, Text, ScrollView, SafeAreaView } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  ScrollView,
+  TouchableOpacity
+} from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 import moment from 'moment';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import Comments from './Comments';
 import { Rating } from 'react-native-elements';
+import { Actions } from 'react-native-router-flux';
 
-const SingleBusiness = ({ route, navigation }) => {
-  const { business } = route.params;
+const SingleBusiness = ({ business }) => {
   const {
     latitude,
     longitude,
@@ -106,6 +112,11 @@ const SingleBusiness = ({ route, navigation }) => {
           {hoursOutput}
           <Comments comments={comments} />
         </View>
+        {hoursOutput}
+        <Comments comments={comments} business={business} />
+        <TouchableOpacity onPress={() => Actions.pop()}>
+          <Text style={styles.textSign}>Go back!</Text>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
@@ -113,7 +124,10 @@ const SingleBusiness = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
   backgroundStyle: {
-    margin: '5%',
+    marginTop: '10%',
+    marginLeft: '5%',
+    marginRight: '5%',
+    marginBottom: '5%',
     borderRadius: 5,
     borderWidth: 1,
     textAlign: 'center',
