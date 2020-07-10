@@ -6,6 +6,8 @@ import BusinessesList from './BusinessesList';
 import SingleBusiness from './SingleBusiness';
 import CommentForm from './CommentForm';
 
+import { View } from 'react-native';
+import OwnerFormSignUp from './OwnerFormSignUp';
 const Tab = createBottomTabNavigator();
 
 export default function App() {

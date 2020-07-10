@@ -13,12 +13,12 @@ export default class FormSignUp extends React.Component {
       <View style={styles.container}>
         <TextInput
           style={styles.inputBox}
-          placeholder="Name"
+          placeholder="First Name"
           placeholderTextColor="#003344"
         />
         <TextInput
           style={styles.inputBox}
-          placeholder="LastName"
+          placeholder="Last Name"
           placeholderTextColor="#003344"
         />
         <TextInput
@@ -41,11 +41,10 @@ export default class FormSignUp extends React.Component {
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1.5,
     alignItems: 'center'
   },
   inputBox: {
-    // flexGrow: 0.5,
     backgroundColor: '#e8ebf3',
     width: 300,
     borderRadius: 25,
