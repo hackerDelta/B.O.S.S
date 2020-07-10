@@ -7,34 +7,32 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { render } from 'react-dom';
 
 const image = require('../../assets/HomePage.png');
+const HomeScreen = () => {
+  const signin = () => Actions.signin();
+  const signup = () => Actions.signup();
+  const guest = () => Actions.businesses();
 
-export default class HomeScreen extends React.Component {
-  signin() {
-    Actions.signin();
-  }
-  signup() {
-    Actions.signup();
-  }
+  return (
+    <ImageBackground source={image} style={styles.image}>
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.appTitle}>WELCOME!</Text>
+        <TouchableOpacity style={styles.button} onPress={signup}>
+          <Text style={styles.textSign}>Sign Up</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={signin}>
+          <Text style={styles.textSign}>Log In</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={guest}>
+          <Text style={styles.textSign}>Guest</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
+    </ImageBackground>
+  );
+};
 
-  render() {
-    return (
-      <ImageBackground source={image} style={styles.image}>
-        <SafeAreaView style={styles.container}>
-          <Text style={styles.appTitle}>WELCOME!</Text>
-          <TouchableOpacity style={styles.button} onPress={this.signup}>
-            <Text style={styles.textSign}>Sign Up</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={this.signin}>
-            <Text style={styles.textSign}>Log In</Text>
-          </TouchableOpacity>
-        </SafeAreaView>
-      </ImageBackground>
-    );
-  }
-}
+export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
