@@ -1,6 +1,6 @@
 # Project Title
 
-Project is a React Native application that is intended to help bridge the racial wealth gap and stengthen local economies. It provides consumers the ability to browse and search for black-owned businesses that they can support. Business owners can also add themselves and their businesses.
+Project is a React Native application that is intended to help bridge the racial wealth gap and strengthen local economies. It provides consumers the ability to browse and search for black-owned businesses that they can support. Business owners can also add themselves and their businesses.
 
 ## Getting Started
 
