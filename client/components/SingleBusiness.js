@@ -111,13 +111,8 @@ const SingleBusiness = ({ business }) => {
             </MapView>
           </View>
           {hoursOutput}
-          <Comments comments={comments} />
+          <Comments comments={comments} business={business} />
         </View>
-        {hoursOutput}
-        <Comments comments={comments} business={business} />
-        <TouchableOpacity onPress={() => Actions.pop()}>
-          <Text style={styles.textSign}>Go back!</Text>
-        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
@@ -137,7 +132,7 @@ const styles = StyleSheet.create({
   mapStyle: {
     alignSelf: 'center',
     height: 200,
-    width: 330,
+    width: 300,
     marginTop: 10,
     marginLeft: 20,
     marginRight: 20
