@@ -12,9 +12,7 @@ const Comments = ({ comments, business }) => {
         <Comment key={comment.title} information={comment} />
       ))}
     </View>
-  ) : (
-    <Text style={styles.textStyle}>No reviews yet! :)</Text>
-  );
+  ) : null;
 
   return (
     <View style={styles.backgroundStyle}>
