@@ -112,9 +112,6 @@ const SingleBusiness = ({ business }) => {
           </View>
           {hoursOutput}
           <Comments comments={comments} business={business} />
-          <TouchableOpacity onPress={() => Actions.pop()}>
-            <Text style={styles.textSign}>Go back!</Text>
-          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>
