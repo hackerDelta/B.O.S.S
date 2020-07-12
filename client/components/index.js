@@ -2,7 +2,7 @@ import Business from './Business';
 import BusinessOwnerProfile from './BusinessOwnerProfile';
 import BusinessesList from './BusinessesList';
 import Comment from './Comment';
-// import CommentForm from "./CommentForm";
+import CommentForm from './CommentForm';
 import Comments from './Comments';
 import FormSignIn from './FormSignIn';
 import FormSignUp from './FormSignUp';
@@ -18,7 +18,7 @@ export {
   BusinessOwnerProfile,
   BusinessesList,
   Comment,
-  // CommentForm,
+  CommentForm,
   Comments,
   FormSignIn,
   FormSignUp,

@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   SafeAreaView
 } from 'react-native';
-import { Card, Title, Paragraph } from 'react-native-paper';
+import { Card, Title, Paragraph, Subheading } from 'react-native-paper';
 import moment from 'moment';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import Comments from './Comments';
@@ -65,11 +65,24 @@ const SingleBusiness = ({ business }) => {
       ) / comments.length
     : 0;
 
+  const { owner } = business;
+  const ownerInfo = owner ? (
+    <TouchableOpacity
+      style={styles.ownerName}
+      onPress={() => Actions.ownerProfile({ owner })}
+    >
+      <Subheading>
+        Owner: {owner.firstName} {owner.lastName}
+      </Subheading>
+    </TouchableOpacity>
+  ) : null;
+
   return (
     <SafeAreaView>
       <ScrollView>
         <View style={styles.backgroundStyle}>
           <Title style={styles.titleStyle}>{name}</Title>
+          {ownerInfo}
           <Rating
             type="custom"
             ratingCount={5}
@@ -136,6 +149,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 20,
     marginRight: 20
+  },
+  ownerName: {
+    alignSelf: 'center'
   },
   starsStyle: {
     alignSelf: 'center'

@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Router, Stack, Scene } from 'react-native-router-flux';
 import {
   BusinessesList,
+  BusinessOwnerProfile,
   CommentForm,
   HomeScreen,
   SignIn,
@@ -29,6 +30,11 @@ export default function App() {
             key="commentForm"
             component={CommentForm}
             title="commentForm"
+          />
+          <Scene
+            key="ownerProfile"
+            component={BusinessOwnerProfile}
+            title="Owner Profile"
           />
         </Stack>
       </Router>
