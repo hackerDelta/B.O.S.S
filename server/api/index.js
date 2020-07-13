@@ -4,6 +4,7 @@ const app = express();
 const PORT = 3001;
 
 app.use('/api/businesses', require('./businesses'));
+app.use('/api/comments', require('./comments'));
 app.use('/api/users', require('./users'));
 
 app.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`));
