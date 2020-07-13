@@ -24,6 +24,9 @@ const Comment = db.define('comment', {
       max: 5,
       notEmpty: true
     }
+  },
+  photos: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
   }
 });
 
