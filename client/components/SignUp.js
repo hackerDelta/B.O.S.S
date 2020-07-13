@@ -9,7 +9,6 @@ import {
 import { Actions } from 'react-native-router-flux';
 import Logo from './Logo';
 import FormSignUp from './FormSignUp';
-import SignIn from './SignIn';
 
 export default class SignUp extends React.Component {
   goBack() {
