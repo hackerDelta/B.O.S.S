@@ -967,6 +967,202 @@ const businessesToCreate = [
       }
     ],
     transactions: ['pickup', 'delivery']
+  },
+  {
+    id: 'JXsHJfBAKZT0fG8XkA9Kzw',
+    alias: 'sweet-science-brooklyn',
+    name: 'Sweet',
+    image_url:
+      'https://s3-media3.fl.yelpcdn.com/bphoto/yhADILytHbX27QT2smZ3Lw/o.jpg',
+    is_claimed: true,
+    is_closed: false,
+    url:
+      'https://www.yelp.com/biz/sweet-science-brooklyn?adjust_creative=J7IMkJ2w8f6XnRyefZ8zlA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=J7IMkJ2w8f6XnRyefZ8zlA',
+    phone: '+13477630872',
+    display_phone: '(347) 763-0872',
+    review_count: 567,
+    categories: [
+      {
+        alias: 'bars',
+        title: 'Bars'
+      },
+      {
+        alias: 'burgers',
+        title: 'Burgers'
+      },
+      {
+        alias: 'newamerican',
+        title: 'American (New)'
+      }
+    ],
+    rating: 3.5,
+    location: {
+      address1: '135 Graham Ave',
+      address2: null,
+      address3: '',
+      city: 'Brooklyn',
+      zip_code: '11206',
+      country: 'US',
+      state: 'NY',
+      display_address: ['135 Graham Ave', 'Brooklyn, NY 11206'],
+      cross_streets: 'Boerum St & Johnson Ave'
+    },
+    coordinates: {
+      latitude: 40.7063841819763,
+      longitude: -73.9431119710207
+    },
+    photos: [],
+    price: '$$',
+    hours: [
+      {
+        open: [
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0200',
+            day: 0
+          },
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0200',
+            day: 1
+          },
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0200',
+            day: 2
+          },
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0400',
+            day: 3
+          },
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0400',
+            day: 4
+          },
+          {
+            is_overnight: true,
+            start: '1100',
+            end: '0400',
+            day: 5
+          },
+          {
+            is_overnight: true,
+            start: '1100',
+            end: '0200',
+            day: 6
+          }
+        ],
+        hours_type: 'REGULAR',
+        is_open_now: true
+      }
+    ],
+    transactions: ['pickup', 'delivery']
+  },
+  {
+    id: 'JXsHJfBAKZT0fG8XkA9Kzw',
+    alias: 'sweet-science-brooklyn',
+    name: 'Sweeter',
+    image_url:
+      'https://s3-media3.fl.yelpcdn.com/bphoto/yhADILytHbX27QT2smZ3Lw/o.jpg',
+    is_claimed: true,
+    is_closed: false,
+    url:
+      'https://www.yelp.com/biz/sweet-science-brooklyn?adjust_creative=J7IMkJ2w8f6XnRyefZ8zlA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=J7IMkJ2w8f6XnRyefZ8zlA',
+    phone: '+13477630872',
+    display_phone: '(347) 763-0872',
+    review_count: 567,
+    categories: [
+      {
+        alias: 'bars',
+        title: 'Bars'
+      },
+      {
+        alias: 'burgers',
+        title: 'Burgers'
+      },
+      {
+        alias: 'newamerican',
+        title: 'American (New)'
+      }
+    ],
+    rating: 3.5,
+    location: {
+      address1: '135 Graham Ave',
+      address2: null,
+      address3: '',
+      city: 'Brooklyn',
+      zip_code: '11206',
+      country: 'US',
+      state: 'NY',
+      display_address: ['135 Graham Ave', 'Brooklyn, NY 11206'],
+      cross_streets: 'Boerum St & Johnson Ave'
+    },
+    coordinates: {
+      latitude: 40.7063841819763,
+      longitude: -73.9431119710207
+    },
+    photos: [
+      'https://s3-media3.fl.yelpcdn.com/bphoto/yhADILytHbX27QT2smZ3Lw/o.jpg'
+    ],
+    price: '$$',
+    hours: [
+      {
+        open: [
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0200',
+            day: 0
+          },
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0200',
+            day: 1
+          },
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0200',
+            day: 2
+          },
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0400',
+            day: 3
+          },
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0400',
+            day: 4
+          },
+          {
+            is_overnight: true,
+            start: '1100',
+            end: '0400',
+            day: 5
+          },
+          {
+            is_overnight: true,
+            start: '1100',
+            end: '0200',
+            day: 6
+          }
+        ],
+        hours_type: 'REGULAR',
+        is_open_now: true
+      }
+    ],
+    transactions: ['pickup', 'delivery']
   }
 ];
 
