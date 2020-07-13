@@ -1128,12 +1128,12 @@ async function seed() {
   const businesses = await Promise.all(
     businessesToCreate.map(
       (
-        { name, image_url, coordinates, location, phone, hours, is_closed },
+        { name, photos, coordinates, location, phone, hours, is_closed },
         index
       ) => {
         return Business.create({
           name,
-          imageUrl: image_url,
+          images: photos,
           latitude: coordinates.latitude,
           longitude: coordinates.longitude,
           phone,
