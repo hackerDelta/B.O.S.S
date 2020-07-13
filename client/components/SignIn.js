@@ -10,7 +10,6 @@ import {
 import { Actions } from 'react-native-router-flux';
 import Logo from './Logo';
 import FormSignIn from './FormSignIn';
-import SignUp from './SignUp';
 
 export default class SignIn extends React.Component {
   signup() {
@@ -23,10 +22,10 @@ export default class SignIn extends React.Component {
         <StatusBar backgroundColor="#99573d" barStyle="light-content" />
         <Logo />
         <FormSignIn type="Signin" />
-        <View style={styles.signuptext}>
+        <View style={styles.signupText}>
           <Text style={styles.text}>Don't have an account?</Text>
           <TouchableOpacity onPress={this.signup}>
-            <Text style={styles.signupButton}> Signup</Text>
+            <Text style={styles.signupButton}> Sign up</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
@@ -41,7 +40,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  signuptext: {
+  signupText: {
     flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'flex-end',
