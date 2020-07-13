@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { StatusBar } from 'expo-status-bar';
 import {
   StyleSheet,
   Text,
@@ -41,7 +42,6 @@ const styles = StyleSheet.create({
     marginBottom: '15%',
     alignItems: 'center',
     justifyContent: 'center'
-    // backgroundColor: '#97c4d9'
   },
   image: {
     height: '100%',

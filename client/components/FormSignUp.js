@@ -33,7 +33,7 @@ export default class FormSignUp extends React.Component {
           secureTextEntry={true}
         />
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.textStyle}>{this.props.type}</Text>
+          <Text style={styles.textStyle}>Sign Up</Text>
         </TouchableOpacity>
       </View>
     );
