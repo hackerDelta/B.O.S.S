@@ -90,7 +90,7 @@ const BusinessesList = ({ businesses, fetchBusinesses }) => {
         <TouchableOpacity
           key={business.id}
           activeOpacity={1.0}
-          onPress={() => Actions.business({ business })}
+          onPress={() => Actions.business({ id: business.id })}
         >
           <Business business={business} />
         </TouchableOpacity>
