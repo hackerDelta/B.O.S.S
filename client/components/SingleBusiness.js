@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   StyleSheet,
@@ -13,8 +13,14 @@ import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import Comments from './Comments';
 import { Rating } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { fetchBusinessFromServer } from '../store/business';
 
-const SingleBusiness = ({ business }) => {
+const SingleBusiness = ({ id, business, fetchBusiness }) => {
+  useEffect(() => {
+    fetchBusiness(id);
+  }, []);
+
   const {
     latitude,
     longitude,
@@ -24,12 +30,12 @@ const SingleBusiness = ({ business }) => {
     state,
     postalCode,
     phone,
-    imageUrl,
+    images,
     hours,
     isClosed,
     comments
   } = business;
-  const JSONifiedHours = JSON.parse(hours)[0];
+  const JSONifiedHours = hours ? JSON.parse(hours)[0] : { open: [] };
   const hoursOpened = [];
   JSONifiedHours.open.forEach(
     ({ day, start, end }) =>
@@ -58,12 +64,13 @@ const SingleBusiness = ({ business }) => {
       )}
     </View>
   );
-  const calculatedTotalRating = comments.length
-    ? comments.reduce(
-        (accumulator, comment) => accumulator + comment.stars,
-        0
-      ) / comments.length
-    : 0;
+  const calculatedTotalRating =
+    comments && comments.length
+      ? comments.reduce(
+          (accumulator, comment) => accumulator + comment.stars,
+          0
+        ) / comments.length
+      : 0;
 
   const { owner } = business;
   const ownerInfo = owner ? (
@@ -77,59 +84,75 @@ const SingleBusiness = ({ business }) => {
     </TouchableOpacity>
   ) : null;
 
-  return (
-    <SafeAreaView>
-      <ScrollView>
-        <View style={styles.backgroundStyle}>
-          <Title style={styles.titleStyle}>{name}</Title>
-          {ownerInfo}
-          <Rating
-            type="custom"
-            ratingCount={5}
-            imageSize={20}
-            startingValue={calculatedTotalRating}
-            readonly={true}
-          />
-          <Card.Cover
-            style={styles.imageStyle}
-            source={{ uri: `${imageUrl}` }}
-          />
-          <View style={styles.container}>
-            <Text style={styles.textStyle}>Location</Text>
-            <Paragraph
-              style={styles.paragraphStyle}
-            >{`${address} \n${city}, ${state} ${postalCode} \n ${phone}`}</Paragraph>
-            <MapView
-              style={styles.mapStyle}
-              provider={PROVIDER_GOOGLE}
-              showsUserLocation={true}
-              region={{
-                latitude: Number(latitude),
-                longitude: Number(longitude),
-                latitudeDelta: 0.1,
-                longitudeDelta: 0.1
-              }}
-              zoomEnabled={true}
-              scrollEnabled={true}
-              showCompass={true}
-              rotateEnabled={false}
-            >
-              <Marker
-                coordinate={{
+  if (Object.keys(business).length) {
+    return (
+      <SafeAreaView>
+        <ScrollView>
+          <View style={styles.backgroundStyle}>
+            <Title style={styles.titleStyle}>{name}</Title>
+            {ownerInfo}
+            <Rating
+              type="custom"
+              ratingCount={5}
+              imageSize={20}
+              startingValue={calculatedTotalRating}
+              readonly={true}
+            />
+            <Card.Cover
+              style={styles.imageStyle}
+              source={{ uri: `${images[0]}` }}
+            />
+            <View style={styles.container}>
+              <Text style={styles.textStyle}>Location</Text>
+              <Paragraph
+                style={styles.paragraphStyle}
+              >{`${address} \n${city}, ${state} ${postalCode} \n ${phone}`}</Paragraph>
+              <MapView
+                style={styles.mapStyle}
+                provider={PROVIDER_GOOGLE}
+                showsUserLocation={true}
+                region={{
                   latitude: Number(latitude),
-                  longitude: Number(longitude)
+                  longitude: Number(longitude),
+                  latitudeDelta: 0.1,
+                  longitudeDelta: 0.1
                 }}
-                title={name}
-              />
-            </MapView>
+                zoomEnabled={true}
+                scrollEnabled={true}
+                showCompass={true}
+                rotateEnabled={false}
+              >
+                <Marker
+                  coordinate={{
+                    latitude: Number(latitude),
+                    longitude: Number(longitude)
+                  }}
+                  title={name}
+                />
+              </MapView>
+            </View>
+            {hoursOutput}
+            <Comments comments={comments} business={business} />
           </View>
-          {hoursOutput}
-          <Comments comments={comments} business={business} />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+        </ScrollView>
+      </SafeAreaView>
+    );
+  } else {
+    return null;
+  }
 };
+
+const mapState = (state) => {
+  return {
+    business: state.business
+  };
+};
+
+const mapDispatch = (dispatch) => ({
+  fetchBusiness: (id) => dispatch(fetchBusinessFromServer(id))
+});
+
+export default connect(mapState, mapDispatch)(SingleBusiness);
 
 const styles = StyleSheet.create({
   backgroundStyle: {
@@ -185,5 +208,3 @@ const styles = StyleSheet.create({
     fontSize: 18
   }
 });
-
-export default SingleBusiness;
