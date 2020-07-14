@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d2c1551-a39a-4ce8-a59c-b73024f5790f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/HomePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/NavStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/NavStack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/SignIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/SignIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/SignUp.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,14 +49,14 @@
       <screen x="0" y="23" width="2560" height="1366" />
     </state>
     <state x="830" y="336" key="SettingsEditor/0.23.2560.1366@0.23.2560.1366" timestamp="1593892193652" />
-    <state x="726" y="150" width="1200" height="800" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1594184878289">
+    <state x="726" y="150" width="1200" height="800" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1594322537764">
       <screen x="0" y="23" width="2560" height="1366" />
     </state>
-    <state x="726" y="150" width="1200" height="800" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.2560.1366@0.23.2560.1366" timestamp="1594184878289" />
-    <state x="716" y="377" key="com.intellij.ide.util.TipDialog" timestamp="1594184823812">
+    <state x="726" y="150" width="1200" height="800" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.2560.1366@0.23.2560.1366" timestamp="1594322537764" />
+    <state x="716" y="377" key="com.intellij.ide.util.TipDialog" timestamp="1594322521568">
       <screen x="0" y="23" width="2560" height="1366" />
     </state>
-    <state x="716" y="377" key="com.intellij.ide.util.TipDialog/0.23.2560.1366@0.23.2560.1366" timestamp="1594184823812" />
+    <state x="716" y="377" key="com.intellij.ide.util.TipDialog/0.23.2560.1366@0.23.2560.1366" timestamp="1594322521568" />
     <state x="868" y="247" key="run.anything.popup" timestamp="1593892186949">
       <screen x="0" y="23" width="2560" height="1366" />
     </state>
