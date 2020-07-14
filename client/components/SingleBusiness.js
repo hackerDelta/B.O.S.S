@@ -15,6 +15,7 @@ import { Rating } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { fetchBusinessFromServer } from '../store/business';
+import CarouselOfImages from './CarouselOfImages';
 
 const SingleBusiness = ({ id, business, fetchBusiness }) => {
   useEffect(() => {
@@ -72,7 +73,7 @@ const SingleBusiness = ({ id, business, fetchBusiness }) => {
         ) / comments.length
       : 0;
 
-  const { owner } = business;
+  const { owner } = business || {};
   const ownerInfo = owner ? (
     <TouchableOpacity
       style={styles.ownerName}
@@ -83,6 +84,21 @@ const SingleBusiness = ({ id, business, fetchBusiness }) => {
       </Subheading>
     </TouchableOpacity>
   ) : null;
+
+  const imageOutput =
+    images && !images.length ? (
+      <Card.Cover
+        style={styles.imageStyle}
+        source={{
+          uri:
+            'https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png'
+        }}
+      />
+    ) : images && images.length === 1 ? (
+      <Card.Cover style={styles.imageStyle} source={{ uri: images[0] }} />
+    ) : (
+      <CarouselOfImages images={business.images || []} />
+    );
 
   if (Object.keys(business).length) {
     return (
@@ -98,10 +114,7 @@ const SingleBusiness = ({ id, business, fetchBusiness }) => {
               startingValue={calculatedTotalRating}
               readonly={true}
             />
-            <Card.Cover
-              style={styles.imageStyle}
-              source={{ uri: `${images[0]}` }}
-            />
+            {imageOutput}
             <View style={styles.container}>
               <Text style={styles.textStyle}>Location</Text>
               <Paragraph
