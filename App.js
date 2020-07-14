@@ -11,10 +11,12 @@ import {
   SingleBusiness,
   OwnerFormSignUp
 } from './client/components';
+import store from './client/store';
+import { Provider } from 'react-redux';
 
 export default function App() {
   return (
-    <>
+    <Provider store={store}>
       <StatusBar style="auto" />
       <Router>
         <Stack key="root" hideNavBar>
@@ -44,6 +46,6 @@ export default function App() {
           />
         </Stack>
       </Router>
-    </>
+    </Provider>
   );
 }

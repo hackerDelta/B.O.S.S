@@ -1,37 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
   TextInput,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native';
-import { Formik } from 'formik';
 import { IconButton, Button } from 'react-native-paper';
-import * as yup from 'yup';
 import { Rating } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 import * as Permissions from 'expo-permissions';
+import Constants from 'expo-constants';
+import * as ImagePicker from 'expo-image-picker';
+import { connect } from 'react-redux';
+import { createCommentFromServer } from '../store/comments';
 
-const FormSchema = yup.object({
-  title: yup
-    .string()
-    .required('The title field is required!')
-    .min(1, 'The title field is too short!')
-    .max(100, 'The title field is too long'),
-  text: yup
-    .string()
-    .required('The text field is required!')
-    .min(8, 'The text is too short!')
-    .max(5000, 'The text is too long!'),
-  stars: yup.number()
-});
+const CommentForm = ({ business, user, createComment }) => {
+  const userId = user.id;
+  const businessId = business.id;
+  const { name } = business;
+  const [errorMessage, setErrorMessage] = useState('');
+  const [title, setTitle] = useState('');
+  const [comment, setComment] = useState('');
+  const [stars, setStars] = useState(0);
+  const [photos, setPhotos] = useState([]);
 
-const CommentForm = ({ business }) => {
-  const { name, comments } = business;
-  const handleSubmitClick = (userId, title, text, stars) => () => {
-    console.log('clicked');
-    console.log(title, text, stars);
+  const handleSubmitClick = () => {
+    createComment({ businessId, userId, title, comment, stars, photos });
+    Actions.business({ id: businessId });
+  };
+
+  const pickImage = async () => {
+    try {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        base64: true,
+        aspect: [4, 3],
+        quality: 1
+      });
+
+      if (!result.cancelled) {
+        setPhotos([...photos, result.data]);
+      }
+
+      console.log(result);
+    } catch (error) {
+      setErrorMessage(error);
+    }
+  };
+
+  const getPermissionAsync = async () => {
+    if (Constants.platform.ios) {
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!');
+      } else {
+        pickImage();
+      }
+    }
   };
 
   return (
@@ -42,63 +71,72 @@ const CommentForm = ({ business }) => {
         onPress={() => Actions.pop()}
         accessibilityLabel="close"
       />
-
-      <Text style={styles.title}>{name}</Text>
-      <Formik
-        initialValues={{ title: '', text: '', stars: 0 }}
-        onSubmit={(values, actions) => {
-          actions.resetForm();
-        }}
-        validationSchema={FormSchema}
-      >
-        {(props) => (
-          <View>
-            <Rating
-              type="custom"
-              ratingCount={5}
-              imageSize={20}
-              startingValue={0}
-              readonly={false}
-              onChangeText={props.handleChange('rating')}
-              style={{
-                alignSelf: 'flex-start',
-                marginTop: '5%',
-                marginBottom: '5%'
-              }}
-            />
-            <TextInput
-              placeholder=""
-              style={{ height: 20, borderColor: 'gray', borderWidth: 1 }}
-              onChangeText={props.handleChange('title')}
-              onBlur={props.handleBlur('title')}
-            />
-            <Text style={styles.errorText}>{props.errors.title}</Text>
-            <TextInput
-              multiline
-              onChangeText={props.handleChange('text')}
-              onBlur={props.handleBlur('text')}
-              style={{ height: 150, borderColor: 'gray', borderWidth: 1 }}
-            />
-            <Text style={styles.errorText}>{props.errors.text}</Text>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() =>
-                handleSubmitClick(
-                  '1',
-                  props.values.title,
-                  props.values.text,
-                  props.values.stars
-                )
-              }
-            >
-              <Text style={styles.textStyle}>Submit</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-      </Formik>
+      <View>
+        <Rating
+          type="custom"
+          ratingCount={5}
+          imageSize={20}
+          startingValue={0}
+          readonly={false}
+          onChangeText={(rating) => setStars(rating)}
+          style={{
+            alignSelf: 'flex-start',
+            marginTop: '5%',
+            marginBottom: '5%'
+          }}
+        />
+        <TextInput
+          placeholder="Great!"
+          style={{
+            marginBottom: '5%',
+            height: 20,
+            borderColor: 'gray',
+            borderWidth: 1
+          }}
+          value={title}
+          onChangeText={(text) => setTitle(text)}
+        />
+        <TextInput
+          placeholder="This is my favorite restaurant! The food is fantastic. :)"
+          multiline
+          value={comment}
+          onChangeText={(text) => setComment(text)}
+          style={{ height: 150, borderColor: 'gray', borderWidth: 1 }}
+        />
+        <IconButton
+          style={{ alignSelf: 'flex-start' }}
+          icon="camera"
+          onPress={getPermissionAsync}
+          accessibilityLabel="choose an image"
+        />
+        {photos.map((image) => (
+          <Image
+            key={image}
+            style={styles.imageStyle}
+            source={{ uri: `${image}` }}
+          />
+        ))}
+        <TouchableOpacity style={styles.button} onPress={handleSubmitClick}>
+          <Text style={styles.textStyle}>Submit</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
+
+const mapState = (state) => {
+  return {
+    business: state.business,
+    user: state.user
+  };
+};
+
+const mapDispatch = (dispatch) => ({
+  createComment: (businessId, userId, title, comment, stars) =>
+    dispatch(createCommentFromServer(businessId, userId, title, comment, stars))
+});
+
+export default connect(mapState, mapDispatch)(CommentForm);
 
 const styles = StyleSheet.create({
   backgroundStyle: {
@@ -118,7 +156,7 @@ const styles = StyleSheet.create({
     padding: '1%'
   },
   input: {
-    marginBottom: '5%',
+    margin: '5%',
     borderRadius: 5,
     borderWidth: 1
   },
@@ -126,6 +164,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
     marginBottom: '3%'
+  },
+  imageStyle: {
+    width: '25%',
+    height: '20%',
+    margin: 0,
+    padding: 0
   },
   errorText: {
     color: 'red',
@@ -145,5 +189,3 @@ const styles = StyleSheet.create({
     marginVertical: 10
   }
 });
-
-export default CommentForm;

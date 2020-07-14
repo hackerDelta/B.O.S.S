@@ -24,6 +24,9 @@ const Business = db.define('business', {
       isUrl: true
     }
   },
+  images: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
+  },
   hours: {
     type: Sequelize.TEXT,
     allowNull: true,
@@ -68,14 +71,6 @@ const Business = db.define('business', {
     allowNull: false,
     validate: {
       notEmpty: true
-    }
-  },
-  imageUrl: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-      isUrl: true
     }
   },
   isClosed: {

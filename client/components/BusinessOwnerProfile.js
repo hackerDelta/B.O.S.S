@@ -9,23 +9,16 @@ import {
 } from 'react-native';
 import { Card, Paragraph } from 'react-native-paper';
 import Business from './Business';
+import { connect } from 'react-redux';
+import { fetchOwnerFromServer } from '../store/owner';
+import { Actions } from 'react-native-router-flux';
 
-import axios from 'axios';
-
-export default function BusinessOwnerProfile(props) {
-  const { owner } = props;
-
-  const [businessesOwned, setBusinessesOwned] = useState([]);
+const BusinessOwnerProfile = ({ id, owner, fetchOwner }) => {
   const [errorMessage, setErrorMessage] = useState('');
 
-  const getBusinessesOwnedHook = async () => {
+  const getBusinessesOwnedHook = () => {
     try {
-      const response = await axios.get(
-        `http://localhost:3001/api/users/${owner.id}`
-      );
-      const { businesses } = response.data;
-
-      setBusinessesOwned(businesses);
+      fetchOwner(id);
     } catch (error) {
       setErrorMessage("Couldn't get businesses owned :(");
     }
@@ -33,11 +26,7 @@ export default function BusinessOwnerProfile(props) {
 
   useEffect(() => {
     getBusinessesOwnedHook();
-
-    return () => {
-      setBusinessesOwned([businessesOwned]);
-    };
-  }, [businessesOwned]);
+  }, []);
 
   const profileText = owner.profile ? (
     <Paragraph style={styles.paragraphStyle}>{owner.profile}</Paragraph>
@@ -47,15 +36,20 @@ export default function BusinessOwnerProfile(props) {
     </Paragraph>
   );
 
-  const showBusinessesOwned = businessesOwned.length ? (
-    <View>
-      {businessesOwned.map((business) => (
-        <TouchableOpacity key={business.id}>
-          <Business business={business} />
-        </TouchableOpacity>
-      ))}
-    </View>
-  ) : null;
+  const showBusinessesOwned =
+    Object.keys(owner).length && owner.businesses.length ? (
+      <View>
+        {owner.businesses.map((business) => (
+          <TouchableOpacity
+            key={business.id}
+            activeOpacity={1.0}
+            onPress={() => Actions.business({ id: business.id })}
+          >
+            <Business business={business} />
+          </TouchableOpacity>
+        ))}
+      </View>
+    ) : null;
 
   return (
     <SafeAreaView>
@@ -82,7 +76,19 @@ export default function BusinessOwnerProfile(props) {
       </ScrollView>
     </SafeAreaView>
   );
-}
+};
+
+const mapState = (state) => {
+  return {
+    owner: state.owner
+  };
+};
+
+const mapDispatch = (dispatch) => ({
+  fetchOwner: (id) => dispatch(fetchOwnerFromServer(id))
+});
+
+export default connect(mapState, mapDispatch)(BusinessOwnerProfile);
 
 const styles = StyleSheet.create({
   backgroundStyle: {
