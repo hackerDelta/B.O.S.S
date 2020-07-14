@@ -3,8 +3,8 @@ const Business = require('./business');
 const Comment = require('./comment');
 const User = require('./user');
 
-Business.belongsTo(User);
-User.hasMany(Business);
+Business.belongsTo(User, { as: 'owner' });
+User.hasMany(Business, { foreignKey: 'ownerId' });
 
 Comment.belongsTo(User);
 Business.hasMany(Comment);

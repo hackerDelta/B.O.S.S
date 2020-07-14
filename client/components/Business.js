@@ -3,7 +3,10 @@ import { View, StyleSheet } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 
 const Business = ({ business }) => {
-  const { name, address, city, state, postalCode, phone, imageUrl } = business;
+  const { name, address, city, state, postalCode, phone, images } = business;
+  const image = images.length
+    ? images[0]
+    : 'https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png';
 
   return (
     <View style={styles.backgroundStyle}>
@@ -11,7 +14,7 @@ const Business = ({ business }) => {
       <Paragraph
         style={styles.paragraphStyle}
       >{`${address} \n${city}, ${state} ${postalCode} \n ${phone}`}</Paragraph>
-      <Card.Cover style={styles.imageStyle} source={{ uri: `${imageUrl}` }} />
+      <Card.Cover style={styles.imageStyle} source={{ uri: `${image}` }} />
     </View>
   );
 };

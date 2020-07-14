@@ -22,7 +22,7 @@ export default class SignUp extends React.Component {
         <View style={styles.signuptext}>
           <Text style={styles.text}>Have an account?</Text>
           <TouchableOpacity onPress={this.goBack}>
-            <Text style={styles.signupButton}> Login</Text>
+            <Text style={styles.signupButton}> Log in</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>

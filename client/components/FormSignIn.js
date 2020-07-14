@@ -27,7 +27,7 @@ export default class FormSignIn extends React.Component {
           ref={(input) => (this.password = input)}
         />
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.textStyle}>{this.props.type}</Text>
+          <Text style={styles.textStyle}>Log In</Text>
         </TouchableOpacity>
       </View>
     );
@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   inputBox: {
-    // flexGrow: 0.5,
     backgroundColor: '#e8ebf3',
     width: 300,
     borderRadius: 25,

@@ -4,8 +4,18 @@ import { Paragraph } from 'react-native-paper';
 import { Rating } from 'react-native-elements';
 
 const Comment = ({ information }) => {
-  const { title, comment, stars, user } = information;
+  const { title, comment, stars, user, photos } = information;
   const { firstName, lastName, image } = user;
+  const photosOutput =
+    photos && photos.length
+      ? photos.map((photo) => (
+          <Image
+            key={photo}
+            style={styles.photoStyle}
+            source={{ uri: `${photo}` }}
+          />
+        ))
+      : null;
 
   return (
     <View style={styles.backgroundStyle}>
@@ -21,6 +31,7 @@ const Comment = ({ information }) => {
       <Image style={styles.imageStyle} source={{ uri: `${image}` }} />
       <Paragraph>{`${firstName} ${lastName}`}</Paragraph>
       <Paragraph>{comment}</Paragraph>
+      {photosOutput}
     </View>
   );
 };
@@ -29,6 +40,11 @@ const styles = StyleSheet.create({
   backgroundStyle: {
     margin: '5%',
     marginBottom: '3%'
+  },
+  photoStyle: {
+    flex: 1,
+    margin: '10%',
+    fontSize: 18
   },
   starStyle: {
     alignSelf: 'flex-start',

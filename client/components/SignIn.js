@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  signuptext: {
+  signupText: {
     flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'flex-end',

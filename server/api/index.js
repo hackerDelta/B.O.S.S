@@ -18,9 +18,9 @@ passport.deserializeUser(async (id, done) => {
 });
 app.use(passport.initialize());
 app.use(passport.session());
-// app.use('/api/businesses', require('./businesses'));
-// app.use('/api/comments', require('./comments'));
-// app.use('/api/users', require('./users'));
+app.use('/api/businesses', require('./businesses'));
+app.use('/api/comments', require('./comments'));
+app.use('/api/users', require('./users'));
 app.use('/auth', require('../auth'));
 app.use((err, req, res, next) => {
   console.error(err);

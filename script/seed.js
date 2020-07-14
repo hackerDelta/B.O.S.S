@@ -967,6 +967,202 @@ const businessesToCreate = [
       }
     ],
     transactions: ['pickup', 'delivery']
+  },
+  {
+    id: 'JXsHJfBAKZT0fG8XkA9Kzw',
+    alias: 'sweet-science-brooklyn',
+    name: 'Sweet',
+    image_url:
+      'https://s3-media3.fl.yelpcdn.com/bphoto/yhADILytHbX27QT2smZ3Lw/o.jpg',
+    is_claimed: true,
+    is_closed: false,
+    url:
+      'https://www.yelp.com/biz/sweet-science-brooklyn?adjust_creative=J7IMkJ2w8f6XnRyefZ8zlA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=J7IMkJ2w8f6XnRyefZ8zlA',
+    phone: '+13477630872',
+    display_phone: '(347) 763-0872',
+    review_count: 567,
+    categories: [
+      {
+        alias: 'bars',
+        title: 'Bars'
+      },
+      {
+        alias: 'burgers',
+        title: 'Burgers'
+      },
+      {
+        alias: 'newamerican',
+        title: 'American (New)'
+      }
+    ],
+    rating: 3.5,
+    location: {
+      address1: '135 Graham Ave',
+      address2: null,
+      address3: '',
+      city: 'Brooklyn',
+      zip_code: '11206',
+      country: 'US',
+      state: 'NY',
+      display_address: ['135 Graham Ave', 'Brooklyn, NY 11206'],
+      cross_streets: 'Boerum St & Johnson Ave'
+    },
+    coordinates: {
+      latitude: 40.7063841819763,
+      longitude: -73.9431119710207
+    },
+    photos: [],
+    price: '$$',
+    hours: [
+      {
+        open: [
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0200',
+            day: 0
+          },
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0200',
+            day: 1
+          },
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0200',
+            day: 2
+          },
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0400',
+            day: 3
+          },
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0400',
+            day: 4
+          },
+          {
+            is_overnight: true,
+            start: '1100',
+            end: '0400',
+            day: 5
+          },
+          {
+            is_overnight: true,
+            start: '1100',
+            end: '0200',
+            day: 6
+          }
+        ],
+        hours_type: 'REGULAR',
+        is_open_now: true
+      }
+    ],
+    transactions: ['pickup', 'delivery']
+  },
+  {
+    id: 'JXsHJfBAKZT0fG8XkA9Kzw',
+    alias: 'sweet-science-brooklyn',
+    name: 'Sweeter',
+    image_url:
+      'https://s3-media3.fl.yelpcdn.com/bphoto/yhADILytHbX27QT2smZ3Lw/o.jpg',
+    is_claimed: true,
+    is_closed: false,
+    url:
+      'https://www.yelp.com/biz/sweet-science-brooklyn?adjust_creative=J7IMkJ2w8f6XnRyefZ8zlA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=J7IMkJ2w8f6XnRyefZ8zlA',
+    phone: '+13477630872',
+    display_phone: '(347) 763-0872',
+    review_count: 567,
+    categories: [
+      {
+        alias: 'bars',
+        title: 'Bars'
+      },
+      {
+        alias: 'burgers',
+        title: 'Burgers'
+      },
+      {
+        alias: 'newamerican',
+        title: 'American (New)'
+      }
+    ],
+    rating: 3.5,
+    location: {
+      address1: '135 Graham Ave',
+      address2: null,
+      address3: '',
+      city: 'Brooklyn',
+      zip_code: '11206',
+      country: 'US',
+      state: 'NY',
+      display_address: ['135 Graham Ave', 'Brooklyn, NY 11206'],
+      cross_streets: 'Boerum St & Johnson Ave'
+    },
+    coordinates: {
+      latitude: 40.7063841819763,
+      longitude: -73.9431119710207
+    },
+    photos: [
+      'https://s3-media3.fl.yelpcdn.com/bphoto/yhADILytHbX27QT2smZ3Lw/o.jpg'
+    ],
+    price: '$$',
+    hours: [
+      {
+        open: [
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0200',
+            day: 0
+          },
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0200',
+            day: 1
+          },
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0200',
+            day: 2
+          },
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0400',
+            day: 3
+          },
+          {
+            is_overnight: true,
+            start: '1200',
+            end: '0400',
+            day: 4
+          },
+          {
+            is_overnight: true,
+            start: '1100',
+            end: '0400',
+            day: 5
+          },
+          {
+            is_overnight: true,
+            start: '1100',
+            end: '0200',
+            day: 6
+          }
+        ],
+        hours_type: 'REGULAR',
+        is_open_now: true
+      }
+    ],
+    transactions: ['pickup', 'delivery']
   }
 ];
 
@@ -975,25 +1171,29 @@ const usersToCreate = [
     firstName: 'Jane',
     lastName: 'Doe',
     email: 'jane@email.com',
-    password: '123'
+    password: '123',
+    isBusinessOwner: 'true'
   },
   {
     firstName: 'John',
     lastName: 'Doe',
     email: 'john@email.com',
-    password: '123'
+    password: '123',
+    isBusinessOwner: 'true'
   },
   {
     firstName: 'Henry',
     lastName: 'Smith',
     email: 'henry@email.com',
-    password: '123'
+    password: '123',
+    isBusinessOwner: 'true'
   },
   {
     firstName: 'Greg',
     lastName: 'Johnson',
     email: 'greg@email.com',
     password: '123',
+    isBusinessOwner: 'true',
     image:
       'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'
   },
@@ -1004,6 +1204,30 @@ const usersToCreate = [
     password: '123',
     isBusinessOwner: 'true',
     profile: "Lorem ipsum... this is my profile. Hi, I'm Sara Gene!"
+  },
+  {
+    firstName: 'Sample',
+    lastName: 'Consumer1',
+    email: 'consumer1@email.com',
+    password: '123',
+    image:
+      'https://cdn.pixabay.com/photo/2016/08/31/11/54/user-1633249_1280.png'
+  },
+  {
+    firstName: 'Sample',
+    lastName: 'Consumer2',
+    email: 'consumer2@email.com',
+    password: '123',
+    image:
+      'https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805__480.png'
+  },
+  {
+    firstName: 'Sample',
+    lastName: 'Consumer3',
+    email: 'consumer3@email.com',
+    password: '123',
+    image:
+      'https://cdn.pixabay.com/photo/2017/06/13/12/54/profile-2398783__480.png'
   }
 ];
 
@@ -1100,12 +1324,12 @@ async function seed() {
   const businesses = await Promise.all(
     businessesToCreate.map(
       (
-        { name, image_url, coordinates, location, phone, hours, is_closed },
+        { name, photos, coordinates, location, phone, hours, is_closed },
         index
       ) => {
         return Business.create({
           name,
-          imageUrl: image_url,
+          images: photos,
           latitude: coordinates.latitude,
           longitude: coordinates.longitude,
           phone,
@@ -1115,7 +1339,7 @@ async function seed() {
           city: location.city,
           postalCode: location.zip_code,
           state: location.state,
-          userId: index < 5 ? index + 1 : null
+          ownerId: index < 5 ? index + 1 : null
         });
       }
     )
