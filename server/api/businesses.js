@@ -23,7 +23,10 @@ router.get('/:id', async (req, res, next) => {
     const { id } = req.params;
 
     const business = await Business.findByPk(id, {
-      include: [{ model: Comment, include: { model: User } }]
+      include: [
+        { model: Comment, include: { model: User } },
+        { model: User, as: 'owner' }
+      ]
     });
 
     res.status(200).json(business);
