@@ -10,34 +10,35 @@ import {
 import { Title } from 'react-native-paper';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
-import axios from 'axios';
 import Business from './Business';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { fetchBusinessesFromServer } from '../store/businesses';
 
-const BusinessesList = () => {
-  const [businesses, setBusinesses] = useState([]);
+const BusinessesList = ({ businesses, fetchBusinesses }) => {
   const [markers, setMarkers] = useState([]);
   const [location, setLocation] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const getAllBusinessesHook = async () => {
+  const getAllBusinessesHook = () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/businesses');
-      const arrayOfBusinesses = response.data;
-      const arrayOfDirections = arrayOfBusinesses.map((business) => ({
-        id: business.id,
-        title: business.name,
-        imageUrl: business.imageUrl,
-        longitude: Number(business.longitude),
-        latitude: Number(business.latitude)
-      }));
-
-      setBusinesses(arrayOfBusinesses);
-      setMarkers(arrayOfDirections);
+      fetchBusinesses();
     } catch (err) {
       setErrorMessage('Something went wrong!');
     }
+  };
+
+  const createMarkersHook = () => {
+    const arrayOfDirections = businesses.map((business) => ({
+      id: business.id,
+      title: business.name,
+      images: business.images[0],
+      longitude: Number(business.longitude),
+      latitude: Number(business.latitude)
+    }));
+
+    setMarkers(arrayOfDirections);
   };
 
   const getCurrentLocationHook = async () => {
@@ -59,6 +60,10 @@ const BusinessesList = () => {
       getAllBusinessesHook();
     }
   }, []);
+
+  useEffect(() => {
+    createMarkersHook();
+  }, [businesses]);
 
   const output = location ? (
     <View>
@@ -85,7 +90,7 @@ const BusinessesList = () => {
         <TouchableOpacity
           key={business.id}
           activeOpacity={1.0}
-          onPress={() => Actions.business({ business })}
+          onPress={() => Actions.business({ id: business.id })}
         >
           <Business business={business} />
         </TouchableOpacity>
@@ -103,6 +108,18 @@ const BusinessesList = () => {
     </SafeAreaView>
   );
 };
+
+const mapState = (state) => {
+  return {
+    businesses: state.businesses
+  };
+};
+
+const mapDispatch = (dispatch) => ({
+  fetchBusinesses: () => dispatch(fetchBusinessesFromServer())
+});
+
+export default connect(mapState, mapDispatch)(BusinessesList);
 
 const styles = StyleSheet.create({
   mapStyle: {
@@ -123,5 +140,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   }
 });
-
-export default BusinessesList;
