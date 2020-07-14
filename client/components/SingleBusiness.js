@@ -17,10 +17,11 @@ import { connect } from 'react-redux';
 import { fetchBusinessFromServer } from '../store/business';
 import CarouselOfImages from './CarouselOfImages';
 
-const SingleBusiness = ({ id, business, fetchBusiness }) => {
+const SingleBusiness = (props) => {
+  const { id, business, fetchBusiness } = props;
   useEffect(() => {
     fetchBusiness(id);
-  }, []);
+  }, [props.comments]);
 
   const {
     latitude,
@@ -157,7 +158,8 @@ const SingleBusiness = ({ id, business, fetchBusiness }) => {
 
 const mapState = (state) => {
   return {
-    business: state.business
+    business: state.business,
+    comments: state.comments
   };
 };
 
