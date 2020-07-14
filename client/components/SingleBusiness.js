@@ -34,7 +34,8 @@ const SingleBusiness = ({ id, business, fetchBusiness }) => {
     images,
     hours,
     isClosed,
-    comments
+    comments,
+    owner
   } = business;
   const JSONifiedHours = hours ? JSON.parse(hours)[0] : { open: [] };
   const hoursOpened = [];
@@ -73,11 +74,10 @@ const SingleBusiness = ({ id, business, fetchBusiness }) => {
         ) / comments.length
       : 0;
 
-  const { owner } = business || {};
   const ownerInfo = owner ? (
     <TouchableOpacity
       style={styles.ownerName}
-      onPress={() => Actions.ownerProfile({ owner })}
+      onPress={() => Actions.ownerProfile({ id: owner.id })}
     >
       <Subheading>
         Owner: {owner.firstName} {owner.lastName}
