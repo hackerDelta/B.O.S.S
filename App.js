@@ -4,7 +4,7 @@ import { Router, Stack, Scene } from 'react-native-router-flux';
 import {
   BusinessesList,
   BusinessOwnerProfile,
-  // CommentForm,
+  CommentForm,
   HomeScreen,
   SignIn,
   SignUp,
@@ -13,7 +13,6 @@ import {
 } from './client/components';
 import store from './client/store';
 import { Provider } from 'react-redux';
-
 export default function App() {
   return (
     <Provider store={store}>
@@ -29,11 +28,11 @@ export default function App() {
             title="Businesses"
           />
           <Scene key="business" component={SingleBusiness} title="Business" />
-          {/* <Scene
+          <Scene
             key="commentForm"
             component={CommentForm}
             title="commentForm"
-          /> */}
+          />
           <Scene
             key="ownerProfile"
             component={BusinessOwnerProfile}
