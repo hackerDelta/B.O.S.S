@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
+import { HOST_WITH_PORT } from '../../environment';
 
 const initialState = {};
 
@@ -9,7 +10,7 @@ const getUser = (user) => ({ type: GET_USER, user });
 
 export const me = () => async (dispatch) => {
   try {
-    const res = await axios.get('http://localhost:3001/auth/me');
+    const res = await axios.get(`${HOST_WITH_PORT}/auth/me`);
     dispatch(getUser(res.data || initialState));
   } catch (err) {
     console.error(err);
@@ -20,7 +21,7 @@ export const auth = (email, password, method) => async (dispatch) => {
   let response;
 
   try {
-    response = await axios.post(`http://localhost:3001/auth/${method}`, {
+    response = await axios.post(`${HOST_WITH_PORT}/auth/${method}`, {
       email,
       password
     });

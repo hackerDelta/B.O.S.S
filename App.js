@@ -8,7 +8,8 @@ import {
   HomeScreen,
   SignIn,
   SignUp,
-  SingleBusiness
+  SingleBusiness,
+  OwnerFormSignUp
 } from './client/components';
 import store from './client/store';
 import { Provider } from 'react-redux';
@@ -43,6 +44,11 @@ export default function App() {
             key="Unauthenticated"
             component={Unauthenticated}
             title="Unauthenticated"
+          />
+          <Scene
+            key="ownerSignup"
+            component={OwnerFormSignUp}
+            title="OwnerSignUp"
           />
         </Stack>
       </Router>

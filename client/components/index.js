@@ -12,6 +12,7 @@ import Navigation from './Navigation';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import SingleBusiness from './SingleBusiness';
+import OwnerFormSignUp from './OwnerFormSignUp';
 
 export {
   Business,
@@ -24,6 +25,7 @@ export {
   FormSignUp,
   HomeScreen,
   Logo,
+  OwnerFormSignUp,
   Navigation,
   SignIn,
   SignUp,
