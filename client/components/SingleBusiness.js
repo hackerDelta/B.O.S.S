@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   StyleSheet,
@@ -16,14 +16,20 @@ import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { fetchBusinessFromServer, unmountBusiness } from '../store/business';
 import CarouselOfImages from './CarouselOfImages';
+import Loading from './Loading';
 
 const SingleBusiness = (props) => {
   const { id, fetchBusiness, destroy } = props;
   let { business } = props;
-  useLayoutEffect(() => {
+  useEffect(() => {
     fetchBusiness(id);
 
     return () => destroy();
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => console.log('Hello, World!'), 5000);
+    return () => clearTimeout(timer);
   }, []);
 
   const {
@@ -155,7 +161,7 @@ const SingleBusiness = (props) => {
       </SafeAreaView>
     );
   } else {
-    return null;
+    return <Loading />;
   }
 };
 
