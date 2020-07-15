@@ -13,7 +13,7 @@ import {
 } from './client/components';
 import store from './client/store';
 import { Provider } from 'react-redux';
-import Unauthenticated from './client/components/Unauthenticated';
+import Prompt from './client/components/Prompt';
 
 export default function App() {
   return (
@@ -40,11 +40,7 @@ export default function App() {
             component={BusinessOwnerProfile}
             title="Owner Profile"
           />
-          <Scene
-            key="Unauthenticated"
-            component={Unauthenticated}
-            title="Unauthenticated"
-          />
+          <Scene key="prompt" component={Prompt} title="Prompt" />
           <Scene
             key="ownerSignup"
             component={OwnerFormSignUp}
