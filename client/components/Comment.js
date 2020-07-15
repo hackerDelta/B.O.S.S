@@ -2,19 +2,23 @@ import * as React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import { Paragraph } from 'react-native-paper';
 import { Rating } from 'react-native-elements';
+import btoa from 'btoa';
 
 const Comment = ({ information }) => {
   const { title, comment, stars, user, photos } = information;
   const { firstName, lastName, image } = user;
   const photosOutput =
     photos && photos.length
-      ? photos.map((photo) => (
-          <Image
-            key={photo}
-            style={styles.photoStyle}
-            source={{ uri: `${photo}` }}
-          />
-        ))
+      ? photos.map((photo) => {
+          console.log('YUP', photo);
+          return (
+            <Image
+              key={photo}
+              style={styles.photoStyle}
+              source={{ uri: `data:image/jpeg;base64` }}
+            />
+          );
+        })
       : null;
 
   return (
@@ -42,9 +46,9 @@ const styles = StyleSheet.create({
     marginBottom: '3%'
   },
   photoStyle: {
-    flex: 1,
-    margin: '10%',
-    fontSize: 18
+    width: 100,
+    height: 100,
+    margin: '10%'
   },
   starStyle: {
     alignSelf: 'flex-start',
