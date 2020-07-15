@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import {
   View,
   StyleSheet,
@@ -14,14 +14,17 @@ import Comments from './Comments';
 import { Rating } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { fetchBusinessFromServer } from '../store/business';
+import { fetchBusinessFromServer, unmountBusiness } from '../store/business';
 import CarouselOfImages from './CarouselOfImages';
 
 const SingleBusiness = (props) => {
-  const { id, business, fetchBusiness } = props;
-  useEffect(() => {
+  const { id, fetchBusiness, destroy } = props;
+  let { business } = props;
+  useLayoutEffect(() => {
     fetchBusiness(id);
-  }, [props.comments]);
+
+    return () => destroy();
+  }, []);
 
   const {
     latitude,
@@ -164,7 +167,8 @@ const mapState = (state) => {
 };
 
 const mapDispatch = (dispatch) => ({
-  fetchBusiness: (id) => dispatch(fetchBusinessFromServer(id))
+  fetchBusiness: (id) => dispatch(fetchBusinessFromServer(id)),
+  destroy: () => dispatch(unmountBusiness())
 });
 
 export default connect(mapState, mapDispatch)(SingleBusiness);
