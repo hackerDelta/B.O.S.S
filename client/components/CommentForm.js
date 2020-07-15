@@ -17,6 +17,7 @@ import { connect } from 'react-redux';
 import { createCommentFromServer } from '../store/comments';
 
 const CommentForm = ({ business, user, createComment }) => {
+  const inquiry = () => Actions.inquiry();
   const userId = user.id;
   const businessId = business.id;
   const { name } = business;
@@ -27,8 +28,12 @@ const CommentForm = ({ business, user, createComment }) => {
   const [photos, setPhotos] = useState([]);
 
   const handleSubmitClick = () => {
-    createComment({ businessId, userId, title, comment, stars, photos });
-    Actions.business({ id: businessId });
+    if (!userId) {
+      Actions.inquiry();
+    } else {
+      createComment({ businessId, userId, title, comment, stars, photos });
+      Actions.business({ id: businessId });
+    }
   };
 
   const pickImage = async () => {
@@ -42,7 +47,7 @@ const CommentForm = ({ business, user, createComment }) => {
       });
 
       if (!result.cancelled) {
-        setPhotos([...photos, result.data]);
+        setPhotos([...photos, result.base64]);
       }
 
       console.log(result);
@@ -71,6 +76,7 @@ const CommentForm = ({ business, user, createComment }) => {
         onPress={() => Actions.pop()}
         accessibilityLabel="close"
       />
+      <Text style={styles.title}>{name}</Text>
       <View>
         <Rating
           type="custom"
@@ -113,7 +119,7 @@ const CommentForm = ({ business, user, createComment }) => {
           <Image
             key={image}
             style={styles.imageStyle}
-            source={{ uri: `${image}` }}
+            source={{ uri: `data:image/jpeg;base64/${image}` }}
           />
         ))}
         <TouchableOpacity style={styles.button} onPress={handleSubmitClick}>
