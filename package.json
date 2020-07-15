@@ -95,5 +95,5 @@
     "redux-logger": "^3.0.6"
   },
   "private": true,
-  "proxy": "${HOST_WITH_PORT}"
+  "proxy": "http://localhost:3001"
 }
