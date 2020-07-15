@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import { HOST_WITH_PORT } from '../../environment';
+import { HOST_WITH_PORT } from '../../environment';
 
 const CREATE_COMMENT = 'CREATE_COMMENT';
 
@@ -13,7 +13,7 @@ const defaultComments = [];
 export const createCommentFromServer = (comment) => async (dispatch) => {
   try {
     const response = await axios.post(
-      `http://localhost3001/api/comments`,
+      `${HOST_WITH_PORT}/api/comments`,
       comment
     );
     dispatch(createComment(response.data));

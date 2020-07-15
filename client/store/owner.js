@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import { HOST_WITH_PORT } from '../../environment';
+import { HOST_WITH_PORT } from '../../environment';
 
 const GET_OWNER = 'GET_OWNER';
 
@@ -12,7 +12,7 @@ const defaultOwner = {};
 
 export const fetchOwnerFromServer = (id) => async (dispatch) => {
   try {
-    const response = await axios.get(`http://localhost:3001/api/users/${id}`);
+    const response = await axios.get(`${HOST_WITH_PORT}/api/users/${id}`);
     dispatch(getOwner(response.data));
   } catch (err) {
     console.error(err);
