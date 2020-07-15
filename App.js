@@ -12,7 +12,7 @@ import {
 } from './client/components';
 import store from './client/store';
 import { Provider } from 'react-redux';
-import Inquiry from './client/components/Inquiry';
+import Unauthenticated from './client/components/Unauthenticated';
 
 export default function App() {
   return (
@@ -39,7 +39,11 @@ export default function App() {
             component={BusinessOwnerProfile}
             title="Owner Profile"
           />
-          <Scene key="inquiry" component={Inquiry} title="Inquiry" />
+          <Scene
+            key="Unauthenticated"
+            component={Unauthenticated}
+            title="Unauthenticated"
+          />
         </Stack>
       </Router>
     </Provider>

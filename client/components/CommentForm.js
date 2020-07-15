@@ -17,7 +17,7 @@ import { connect } from 'react-redux';
 import { createCommentFromServer } from '../store/comments';
 
 const CommentForm = ({ business, user, createComment }) => {
-  const inquiry = () => Actions.inquiry();
+  const unauthenticated = () => Actions.unauthenticated();
   const userId = user.id;
   const businessId = business.id;
   const { name } = business;
@@ -29,7 +29,7 @@ const CommentForm = ({ business, user, createComment }) => {
 
   const handleSubmitClick = () => {
     if (!userId) {
-      Actions.inquiry();
+      Actions.unauthenticated();
     } else {
       createComment({ businessId, userId, title, comment, stars, photos });
       Actions.business({ id: businessId });
