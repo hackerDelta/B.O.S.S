@@ -12,6 +12,8 @@ import {
 } from './client/components';
 import store from './client/store';
 import { Provider } from 'react-redux';
+import Inquiry from './client/components/Inquiry';
+
 export default function App() {
   return (
     <Provider store={store}>
@@ -37,6 +39,7 @@ export default function App() {
             component={BusinessOwnerProfile}
             title="Owner Profile"
           />
+          <Scene key="inquiry" component={Inquiry} title="Inquiry" />
         </Stack>
       </Router>
     </Provider>
