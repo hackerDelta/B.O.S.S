@@ -15,4 +15,4 @@ web-build/
 
 .vscode
 
-environment.js
+secrets.js

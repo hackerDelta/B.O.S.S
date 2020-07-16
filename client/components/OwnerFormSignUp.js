@@ -10,7 +10,6 @@ import {
 import { Actions } from 'react-native-router-flux';
 import Logo from './Logo';
 import axios from 'axios';
-import { HOST_WITH_PORT } from '../../environment';
 
 const OwnerFormSignUp = () => {
   const [firstName, setFirstName] = useState('');

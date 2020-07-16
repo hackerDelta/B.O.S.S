@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
-import { HOST_WITH_PORT } from '../../environment';
 const GET_USER = 'GET_USER';
 const initialState = {};
 const getUser = (user) => ({ type: GET_USER, user });

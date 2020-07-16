@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { HOST_WITH_PORT } from '../../environment';
 
 const GET_BUSINESS = 'GET_BUSINESS';
 
