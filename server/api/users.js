@@ -12,7 +12,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/api/users/:id', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     let user = await User.findOne({ where: { id: req.params.id } });
     res.json({ user });

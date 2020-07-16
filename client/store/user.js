@@ -14,16 +14,38 @@ export const me = () => async (dispatch) => {
     console.error(err);
   }
 };
-export const auth = (email, password, method) => async (dispatch) => {
+export const authsignup = (firstName, lastName, email, password) => async (
+  dispatch
+) => {
   let response;
   try {
     response = await axios.post(
       `https://hackerdelta-capstone.herokuapp.com/auth/${method}`,
       {
+        firstName,
+        lastName,
         email,
         password
       }
     );
+    Actions.businesses();
+  } catch (authError) {
+    return dispatch(getUser({ error: authError }));
+  }
+  try {
+    dispatch(getUser(response.data));
+  } catch (dispatchOrHistoryErr) {
+    console.error(dispatchOrHistoryErr);
+  }
+};
+
+export const authlogin = (email, password) => async (dispatch) => {
+  let response;
+  try {
+    response = await axios.post(`${HOST_WITH_PORT}/auth/login`, {
+      email,
+      password
+    });
     Actions.businesses();
   } catch (authError) {
     return dispatch(getUser({ error: authError }));
