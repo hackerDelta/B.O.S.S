@@ -8,7 +8,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { Card, Paragraph } from 'react-native-paper';
-import Business from './Business';
+import BusinessCard from './BusinessCard';
 import { connect } from 'react-redux';
 import { fetchOwnerFromServer } from '../store/owner';
 import { Actions } from 'react-native-router-flux';
@@ -45,7 +45,7 @@ const BusinessOwnerProfile = ({ id, owner, fetchOwner }) => {
             activeOpacity={1.0}
             onPress={() => Actions.business({ id: business.id })}
           >
-            <Business business={business} />
+            <BusinessCard business={business} />
           </TouchableOpacity>
         ))}
       </View>

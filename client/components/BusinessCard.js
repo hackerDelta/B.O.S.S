@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 
-const Business = ({ business }) => {
+const BusinessCard = ({ business }) => {
   const { name, address, city, state, postalCode, phone, images } = business;
   const image = images.length
     ? images[0]
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Business;
+export default BusinessCard;
