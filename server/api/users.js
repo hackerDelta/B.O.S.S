@@ -40,4 +40,13 @@ router.get('/:ownerId', async (req, res, next) => {
   }
 });
 
+router.post('/', async (req, res, next) => {
+  try {
+    const createdOwner = await User.create(req.body);
+    res.status(200).json(createdOwner);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

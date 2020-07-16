@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   View,
@@ -9,60 +9,97 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Logo from './Logo';
+import axios from 'axios';
+import { HOST_WITH_PORT } from '../../environment';
 
-export default class OwnerFormSignUp extends React.Component {
-  goBack() {
-    Actions.signup();
-  }
-  render() {
-    return (
-      <SafeAreaView style={styles.container}>
-        <Logo />
-        {/* <Text style={styles.title}> Owner </Text> */}
-        <TextInput
-          style={styles.inputBox}
-          placeholder="First Name"
-          placeholderTextColor="#003344"
-        />
-        <TextInput
-          style={styles.inputBox}
-          placeholder="Last Name"
-          placeholderTextColor="#003344"
-        />
-        <TextInput
-          style={styles.inputBox}
-          placeholder="Company Name"
-          placeholderTextColor="#003344"
-        />
-        <TextInput
-          style={styles.inputBox}
-          placeholder="Company Address"
-          placeholderTextColor="#003344"
-        />
-        <TextInput
-          style={styles.inputBox}
-          placeholder="Email"
-          placeholderTextColor="#003344"
-        />
-        <TextInput
-          style={styles.inputBox}
-          placeholder="Password"
-          placeholderTextColor="#003344"
-          secureTextEntry={true}
-        />
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.textStyle}>Sign Up</Text>
+const OwnerFormSignUp = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [companyName, setCompanyName] = useState('');
+  const [companyAddress, setCompanyAddress] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async () => {
+    try {
+      const newOwner = {
+        firstName,
+        lastName,
+        email,
+        password,
+        isBusinessOwner: true
+      };
+      await axios.post(
+        `${HOST_WITH_PORT}/api/users`,
+        newOwner,
+        Actions.signin()
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <Logo />
+      <TextInput
+        style={styles.inputBox}
+        placeholder="First Name"
+        placeholderTextColor="#003344"
+        value={firstName}
+        onChangeText={(text) => setFirstName(text)}
+      />
+      <TextInput
+        style={styles.inputBox}
+        placeholder="Last Name"
+        placeholderTextColor="#003344"
+        value={lastName}
+        onChangeText={(text) => setLastName(text)}
+      />
+      <TextInput
+        style={styles.inputBox}
+        placeholder="Company Name"
+        placeholderTextColor="#003344"
+        value={companyName}
+        onChangeText={(text) => setCompanyName(text)}
+      />
+      <TextInput
+        style={styles.inputBox}
+        placeholder="Company Address"
+        placeholderTextColor="#003344"
+        value={companyAddress}
+        onChangeText={(text) => setCompanyAddress(text)}
+      />
+      <TextInput
+        style={styles.inputBox}
+        placeholder="Email"
+        placeholderTextColor="#003344"
+        value={email}
+        onChangeText={(text) => setEmail(text)}
+      />
+      <TextInput
+        style={styles.inputBox}
+        placeholder="Password"
+        placeholderTextColor="#003344"
+        secureTextEntry={true}
+        value={password}
+        onChangeText={(text) => setPassword(text)}
+      />
+      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+        <Text style={styles.textStyle}>Sign Up</Text>
+      </TouchableOpacity>
+      <View style={styles.signupText}>
+        <Text style={styles.text}>Not a business owner?</Text>
+        <TouchableOpacity onPress={() => Actions.signup()}>
+          <Text style={styles.signupButton}> Sign Up</Text>
         </TouchableOpacity>
-        <View style={styles.signupText}>
-          <Text style={styles.text}>Not a business owner?</Text>
-          <TouchableOpacity onPress={this.goBack}>
-            <Text style={styles.signupButton}> Sign Up</Text>
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
-    );
-  }
-}
+      </View>
+    </SafeAreaView>
+  );
+};
+
+export default OwnerFormSignUp;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -70,10 +107,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#3d7f99'
   },
-  // title: {
-  //   fontSize: 27.5,
-  //   color: 'white'
-  // },
   inputBox: {
     backgroundColor: '#e8ebf3',
     width: 300,
