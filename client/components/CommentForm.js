@@ -17,23 +17,23 @@ import { connect } from 'react-redux';
 import { createCommentFromServer } from '../store/comments';
 
 const CommentForm = ({ business, user, createComment }) => {
-  const unauthenticated = () => Actions.unauthenticated();
-  const userId = user.id;
+  const prompt = () => Actions.prompt();
+  const userId = user ? user.id : null;
   const businessId = business.id;
   const { name } = business;
   const [errorMessage, setErrorMessage] = useState('');
   const [title, setTitle] = useState('');
   const [comment, setComment] = useState('');
   const [stars, setStars] = useState(0);
-  const [photos, setPhotos] = useState([]);
+  const [photo, setPhoto] = useState('');
 
   const handleSubmitClick = () => {
-    if (!userId) {
-      Actions.unauthenticated();
-    } else {
-      createComment({ businessId, userId, title, comment, stars, photos });
-      Actions.business({ id: businessId });
-    }
+    // if (!userId) {
+    //   Actions.prompt();
+    // } else {
+    createComment({ businessId, userId: 1, title, comment, stars, photo });
+    Actions.business({ id: businessId });
+    // }
   };
 
   const pickImage = async () => {
@@ -47,10 +47,10 @@ const CommentForm = ({ business, user, createComment }) => {
       });
 
       if (!result.cancelled) {
-        setPhotos([...photos, result.base64]);
+        setPhoto(result.base64);
       }
 
-      console.log(result);
+      console.log('result', result);
     } catch (error) {
       setErrorMessage(error);
     }
@@ -93,6 +93,7 @@ const CommentForm = ({ business, user, createComment }) => {
         />
         <TextInput
           placeholder="Great!"
+          autoCapitalize="none"
           style={{
             marginBottom: '5%',
             height: 20,
@@ -115,13 +116,26 @@ const CommentForm = ({ business, user, createComment }) => {
           onPress={getPermissionAsync}
           accessibilityLabel="choose an image"
         />
-        {photos.map((image) => (
-          <Image
-            key={image}
-            style={styles.imageStyle}
-            source={{ uri: `data:image/jpeg;base64/${image}` }}
-          />
-        ))}
+
+        {photo ? (
+          <View style={{ alignItems: 'flex-start' }}>
+            <IconButton
+              size={15}
+              icon="close"
+              onPress={() => setPhoto('')}
+              accessibilityLabel="close"
+            />
+            <Image
+              key={photo}
+              style={styles.imageStyle}
+              width={100}
+              height={100}
+              source={{ uri: `data:image/jpeg;base64,${photo}` }}
+            />
+          </View>
+        ) : null}
+
+        {/* ))} */}
         <TouchableOpacity style={styles.button} onPress={handleSubmitClick}>
           <Text style={styles.textStyle}>Submit</Text>
         </TouchableOpacity>
@@ -172,8 +186,8 @@ const styles = StyleSheet.create({
     marginBottom: '3%'
   },
   imageStyle: {
-    width: '25%',
-    height: '20%',
+    width: '100%',
+    height: '100%',
     margin: 0,
     padding: 0
   },

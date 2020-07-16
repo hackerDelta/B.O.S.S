@@ -29,7 +29,8 @@ router.get('/:id', async (req, res, next) => {
       ]
     });
 
-    res.status(200).json(business);
+    res.send(business);
+    // res.status(200).json(business);
   } catch (err) {
     next(err);
   }

@@ -15,6 +15,7 @@ import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { fetchBusinessesFromServer } from '../store/businesses';
+import Loading from './Loading';
 
 const BusinessesList = ({ businesses, fetchBusinesses }) => {
   const [markers, setMarkers] = useState([]);
@@ -100,11 +101,15 @@ const BusinessesList = ({ businesses, fetchBusinesses }) => {
 
   return (
     <SafeAreaView>
-      <ScrollView>
-        <Title style={styles.titleStyle}>Businesses</Title>
-        <Text style={styles.errorStyle}>{errorMessage}</Text>
-        {output}
-      </ScrollView>
+      {businesses ? (
+        <ScrollView>
+          <Title style={styles.titleStyle}>Businesses</Title>
+          <Text style={styles.errorStyle}>{errorMessage}</Text>
+          {output}
+        </ScrollView>
+      ) : (
+        <Loading />
+      )}
     </SafeAreaView>
   );
 };

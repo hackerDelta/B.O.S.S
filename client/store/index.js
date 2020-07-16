@@ -4,12 +4,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import businessesReducer from './businesses';
 import businessReducer from './business';
 import commentsReducer from './comments';
-// import userReducer from './user';
+import userReducer from './user';
 import ownerReducer from './owner';
 import { createLogger } from 'redux-logger';
 
 const reducer = combineReducers({
-  // user: userReducer,
+  user: userReducer,
   owner: ownerReducer,
   businesses: businessesReducer,
   business: businessReducer,
@@ -17,7 +17,7 @@ const reducer = combineReducers({
 });
 
 const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
+  applyMiddleware(thunkMiddleware, createLogger({ collapsed: false }))
 );
 
 const store = createStore(reducer, middleware);
