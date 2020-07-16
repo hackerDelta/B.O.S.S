@@ -30,7 +30,7 @@ const OwnerFormSignUp = () => {
         isBusinessOwner: true
       };
       await axios.post(
-        `${HOST_WITH_PORT}/api/users`,
+        `https://hackerdelta-capstone.herokuapp.com/api/users`,
         newOwner,
         Actions.signin()
       );
