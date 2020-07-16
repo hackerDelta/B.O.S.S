@@ -1,11 +1,11 @@
 const express = require('express');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const passport = require('passport');
 const app = express();
 const PORT = process.env.PORT || 3001;
 const db = require('../db');
 
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
