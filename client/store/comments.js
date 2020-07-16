@@ -13,7 +13,7 @@ const defaultComments = [];
 export const createCommentFromServer = (comment) => async (dispatch) => {
   try {
     const response = await axios.post(
-      `${HOST_WITH_PORT}/api/comments`,
+      `https://hackerdelta-capstone.herokuapp.com/api/comments`,
       comment
     );
     dispatch(createComment(response.data));

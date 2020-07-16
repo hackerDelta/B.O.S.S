@@ -6,7 +6,9 @@ const initialState = {};
 const getUser = (user) => ({ type: GET_USER, user });
 export const me = () => async (dispatch) => {
   try {
-    const res = await axios.get(`${HOST_WITH_PORT}/auth/me`);
+    const res = await axios.get(
+      `https://hackerdelta-capstone.herokuapp.com/auth/me`
+    );
     dispatch(getUser(res.data || initialState));
   } catch (err) {
     console.error(err);
@@ -15,10 +17,13 @@ export const me = () => async (dispatch) => {
 export const auth = (email, password, method) => async (dispatch) => {
   let response;
   try {
-    response = await axios.post(`${HOST_WITH_PORT}/auth/${method}`, {
-      email,
-      password
-    });
+    response = await axios.post(
+      `https://hackerdelta-capstone.herokuapp.com/auth/${method}`,
+      {
+        email,
+        password
+      }
+    );
     Actions.businesses();
   } catch (authError) {
     return dispatch(getUser({ error: authError }));
