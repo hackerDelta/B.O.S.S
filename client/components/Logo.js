@@ -5,21 +5,20 @@ const Logo = () => {
   return (
     <View style={styles.container}>
       <Image
-        style={{ width: 170, height: 170 }}
-        source={require('../../assets/logo.png')}
+        style={{ width: 250, height: 250 }}
+        source={require('../../assets/lastone.png')}
       />
-      <Text style={styles.logoText}>Welcome</Text>
+      {/* <Text style={styles.logoText}>Welcome</Text> */}
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'space-evenly',
     alignItems: 'center'
   },
   logoText: {
-    marginVertical: 5,
     fontSize: 25,
     color: '#e2f2f0'
   }

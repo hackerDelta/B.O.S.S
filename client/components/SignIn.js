@@ -11,7 +11,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import Logo from './Logo';
 import { connect } from 'react-redux';
-import { auth } from '../store/user';
+import { authlogin } from '../store/user';
 
 const SignIn = (props) => {
   const signup = () => {
@@ -21,20 +21,22 @@ const SignIn = (props) => {
   const [password, setPassword] = useState('');
 
   const onSubmit = () => {
-    props.login(email, password, 'login');
+    props.login(email, password);
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#99573d" barStyle="light-content" />
       <Logo />
-      <View style={styles.container}>
+      <View style={styles.container2}>
         <TextInput
           style={styles.inputBox}
           placeholder="Email"
           placeholderTextColor="#003344"
           selectionColor="#fff"
           keyboardType="email-address"
+          autoCapitalize="none"
+          autoCompleteType="email"
           value={email}
           onChangeText={(text) => setEmail(text)}
         />
@@ -54,7 +56,7 @@ const SignIn = (props) => {
       <View style={styles.signuptext}>
         <Text style={styles.text}>Don't have an account?</Text>
         <TouchableOpacity onPress={signup}>
-          <Text style={styles.signupButton}> Signup</Text>
+          <Text style={styles.signupButton}>Signup</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -69,7 +71,7 @@ const mapLogin = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    login: (email, password, method) => dispatch(auth(email, password, method))
+    login: (email, password) => dispatch(authlogin(email, password))
   };
 };
 
@@ -80,21 +82,24 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#3d7f99',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'flex-start'
+  },
+  container2: {
+    flex: 1,
+    alignItems: 'center'
   },
   signupText: {
-    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'flex-end',
-    paddingVertical: 15,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    paddingVertical: 15
   },
   text: {
     color: '#b5deef',
     fontSize: 20
   },
   signupButton: {
-    color: '#b5deef',
+    color: 'white',
     fontSize: 20,
     fontWeight: 'bold'
   },
