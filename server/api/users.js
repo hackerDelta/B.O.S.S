@@ -21,7 +21,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.get('/:ownerId', async (req, res, next) => {
+router.get('/owner/:ownerId', async (req, res, next) => {
   try {
     const businessesByOwner = await User.findByPk(req.params.ownerId, {
       include: [
