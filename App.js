@@ -22,7 +22,7 @@ export default function App() {
       <Router>
         <Stack key="root" hideNavBar>
           <Scene key="home" component={HomeScreen} initial />
-          <Scene key="signin" component={SignIn} title="Signin" />
+          <Scene key="signin" component={SignIn} title="SignIn" />
           <Scene key="signup" component={SignUp} title="Signup" />
           <Scene
             key="businesses"
