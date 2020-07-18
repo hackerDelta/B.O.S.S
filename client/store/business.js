@@ -10,10 +10,6 @@ const getBusiness = (business) => ({
   business
 });
 
-export const unmountBusiness = () => ({
-  type: UNMOUNT_BUSINESS
-});
-
 const defaultBusiness = {};
 
 export const fetchBusinessFromServer = (id) => async (dispatch) => {
@@ -21,7 +17,7 @@ export const fetchBusinessFromServer = (id) => async (dispatch) => {
     const response = await axios.get(`${HOST_WITH_PORT}/api/businesses/${id}`);
     dispatch(getBusiness(response.data));
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 };
 
