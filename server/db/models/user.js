@@ -64,6 +64,10 @@ const User = db.define('user', {
     validate: {
       isUrl: true
     }
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 });
 
