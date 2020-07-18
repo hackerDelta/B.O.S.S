@@ -13,7 +13,7 @@ export const me = () => async (dispatch) => {
     const res = await axios.get(`${HOST_WITH_PORT}/auth/me`);
     dispatch(getUser(res.data || initialState));
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 };
 export const authsignup = (firstName, lastName, email, password) => async (
