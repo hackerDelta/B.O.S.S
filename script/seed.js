@@ -1228,6 +1228,14 @@ const usersToCreate = [
     password: '123',
     image:
       'https://cdn.pixabay.com/photo/2017/06/13/12/54/profile-2398783__480.png'
+  },
+  {
+    firstName: 'admin',
+    lastName: 'admin',
+    email: 'admin@email.com',
+    password: '123',
+    isBusinessOwner: 'false',
+    isAdmin: true
   }
 ];
 
