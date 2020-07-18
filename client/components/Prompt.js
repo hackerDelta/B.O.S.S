@@ -16,7 +16,7 @@ const Prompt = () => {
         accessibilityLabel="close"
       />
       <Title style={styles.title}>
-        We need to know about you before we post your review.
+        We need to know about you before we post your review. :)
       </Title>
       <View style={styles.buttonsStyle}>
         <TouchableOpacity style={styles.button} onPress={signin}>
