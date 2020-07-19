@@ -4,9 +4,9 @@
     "slug": "capstone",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/lastone.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/lastone.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
