@@ -10,7 +10,7 @@ import {
 import { Title } from 'react-native-paper';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
-import Business from './Business';
+import BusinessCard from './BusinessCard';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
@@ -92,7 +92,7 @@ const BusinessesList = ({ businesses, fetchBusinesses }) => {
           activeOpacity={1.0}
           onPress={() => Actions.business({ id: business.id })}
         >
-          <Business business={business} />
+          <BusinessCard business={business} />
         </TouchableOpacity>
       ))}
     </View>

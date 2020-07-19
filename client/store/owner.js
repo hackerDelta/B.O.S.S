@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { HOST_WITH_PORT } from '../../environment';
 
 const GET_OWNER = 'GET_OWNER';
 
@@ -12,7 +11,10 @@ const defaultOwner = {};
 
 export const fetchOwnerFromServer = (id) => async (dispatch) => {
   try {
-    const response = await axios.get(`${HOST_WITH_PORT}/api/users/${id}`);
+    const response = await axios.get(
+      `https://hackerdelta-capstone.herokuapp.com/api/users/owner/${id}`
+    );
+    console.log('OWNER INFO', response.data);
     dispatch(getOwner(response.data));
   } catch (err) {
     console.error(err);

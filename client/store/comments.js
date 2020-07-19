@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { HOST_WITH_PORT } from '../../environment';
 
 const CREATE_COMMENT = 'CREATE_COMMENT';
 
@@ -13,7 +12,7 @@ const defaultComments = [];
 export const createCommentFromServer = (comment) => async (dispatch) => {
   try {
     const response = await axios.post(
-      `${HOST_WITH_PORT}/api/comments`,
+      `https://hackerdelta-capstone.herokuapp.com/api/comments`,
       comment
     );
     dispatch(createComment(response.data));

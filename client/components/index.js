@@ -1,4 +1,4 @@
-import Business from './Business';
+import BusinessCard from './BusinessCard';
 import BusinessOwnerProfile from './BusinessOwnerProfile';
 import BusinessesList from './BusinessesList';
 import Comment from './Comment';
@@ -15,7 +15,7 @@ import SingleBusiness from './SingleBusiness';
 import OwnerFormSignUp from './OwnerFormSignUp';
 
 export {
-  Business,
+  BusinessCard,
   BusinessOwnerProfile,
   BusinessesList,
   Comment,
