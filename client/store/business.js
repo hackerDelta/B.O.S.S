@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { HOST_WITH_PORT } from '../../environment';
 
 const GET_BUSINESS = 'GET_BUSINESS';
 
@@ -12,7 +11,9 @@ const defaultBusiness = {};
 
 export const fetchBusinessFromServer = (id) => async (dispatch) => {
   try {
-    const response = await axios.get(`${HOST_WITH_PORT}/api/businesses/${id}`);
+    const response = await axios.get(
+      `https://hackerdelta-capstone.herokuapp.com/api/businesses/${id}`
+    );
     dispatch(getBusiness(response.data));
   } catch (err) {
     console.error(err);
