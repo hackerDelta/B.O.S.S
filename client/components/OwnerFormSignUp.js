@@ -39,8 +39,6 @@ const OwnerFormSignUp = () => {
       setCompanyAddress('');
       setEmail('');
       setPassword('');
-
-      // console.log(newOwner);
     } catch (error) {
       console.log(error);
     }
