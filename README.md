@@ -2,7 +2,7 @@
 
 B.O.S.S. is a React Native application that is intended to help bridge the racial wealth gap and strengthen local economies. It provides consumers the ability to browse and search for black-owned businesses that they can support. Business owners can also add themselves and their businesses.
 
-To run our application, go [here](https://expo.io/@teamhackerdelta/capstone) and click 'Open project in the browser', or if you have an Android phone, scan our QR code to load the application immediately. 
+To run our application, go [here](https://expo.io/@teamhackerdelta/BOSS) and click 'Open project in the browser', or if you have an Android phone, scan our QR code to load the application immediately. 
 
 ## Getting Started
 
