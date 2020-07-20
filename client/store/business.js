@@ -10,6 +10,10 @@ const getBusiness = (business) => ({
   business
 });
 
+export const unmountBusiness = () => ({
+  type: UNMOUNT_BUSINESS
+});
+
 const defaultBusiness = {};
 
 export const fetchBusinessFromServer = (id) => async (dispatch) => {
