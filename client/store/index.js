@@ -7,13 +7,15 @@ import commentsReducer from './comments';
 import userReducer from './user';
 import ownerReducer from './owner';
 import { createLogger } from 'redux-logger';
+import usersReducer from './users';
 
 const reducer = combineReducers({
   user: userReducer,
   owner: ownerReducer,
   businesses: businessesReducer,
   business: businessReducer,
-  comments: commentsReducer
+  comments: commentsReducer,
+  users: usersReducer
 });
 
 const middleware = composeWithDevTools(
