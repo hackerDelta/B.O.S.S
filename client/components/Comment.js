@@ -1,25 +1,55 @@
 import * as React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
-import { Paragraph } from 'react-native-paper';
+import { Paragraph, IconButton } from 'react-native-paper';
 import { Rating } from 'react-native-elements';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { removeCommentFromServer } from '../store/comments';
+import { connect } from 'react-redux';
 
-const Comment = ({ information }) => {
-  const { title, comment, stars, user, photos } = information;
+const Comment = (props) => {
+  const { removeComment, information, type } = props;
+  const {
+    id,
+    title,
+    comment,
+    stars,
+    user,
+    photo,
+    createdAt,
+    updatedAt
+  } = information;
   const { firstName, lastName, image } = user;
-  const photosOutput =
-    photos && photos.length
-      ? photos.map((photo) => (
-          <Image
-            key={photo}
-            style={styles.photoStyle}
-            source={{ uri: `${photo}` }}
-          />
-        ))
-      : null;
+
+  const typeOutput =
+    type === 'update' ? (
+      <MaterialCommunityIcons name="update" size={15} color="black" />
+    ) : null;
+  const date =
+    updatedAt !== createdAt || type === 'update'
+      ? `Updated Review ${new Date(createdAt).toDateString()}`
+      : updatedAt === createdAt && type === 'previous'
+      ? `Previous Review ${new Date(updatedAt).toDateString()}`
+      : `${new Date(updatedAt).toDateString()}`;
+
+  const handleRemoveClick = (id) => {
+    removeComment(id);
+  };
 
   return (
-    <View style={styles.backgroundStyle}>
-      <Text>{title}</Text>
+    <View>
+      <Text>
+        {title} {typeOutput} {date}
+      </Text>
+      {(props.user && props.user.isAdmin) ||
+      (props.user && props.user.id === user.id) ? (
+        <IconButton
+          style={{ alignSelf: 'baseline', margin: 0, padding: 0 }}
+          size={20}
+          icon="delete"
+          onPress={() => handleRemoveClick(id)}
+          accessibilityLabel="close"
+        />
+      ) : null}
       <Rating
         type="custom"
         ratingCount={5}
@@ -31,7 +61,6 @@ const Comment = ({ information }) => {
       <Image style={styles.imageStyle} source={{ uri: `${image}` }} />
       <Paragraph>{`${firstName} ${lastName}`}</Paragraph>
       <Paragraph>{comment}</Paragraph>
-      {photosOutput}
     </View>
   );
 };
@@ -41,10 +70,18 @@ const styles = StyleSheet.create({
     margin: '5%',
     marginBottom: '3%'
   },
+  containerStyle: {
+    margin: '5%',
+    marginBottom: '3%',
+    textAlign: 'left',
+    borderColor: 'lightgray',
+    borderWidth: 1,
+    padding: '1%'
+  },
   photoStyle: {
-    flex: 1,
-    margin: '10%',
-    fontSize: 18
+    width: 100,
+    height: 100,
+    margin: '10%'
   },
   starStyle: {
     alignSelf: 'flex-start',
@@ -58,4 +95,14 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Comment;
+const mapState = (state) => {
+  return {
+    user: state.user
+  };
+};
+
+const mapDispatch = (dispatch) => ({
+  removeComment: (id) => dispatch(removeCommentFromServer(id))
+});
+
+export default connect(mapState, mapDispatch)(Comment);

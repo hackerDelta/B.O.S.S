@@ -14,10 +14,9 @@ export const fetchOwnerFromServer = (id) => async (dispatch) => {
     const response = await axios.get(
       `https://hackerdelta-capstone.herokuapp.com/api/users/owner/${id}`
     );
-    console.log('OWNER INFO', response.data);
     dispatch(getOwner(response.data));
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 };
 

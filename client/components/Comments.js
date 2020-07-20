@@ -1,39 +1,33 @@
-import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { Title, Paragraph } from 'react-native-paper';
-import Comment from './Comment';
-import { Rating } from 'react-native-elements';
-import { Actions } from 'react-native-router-flux';
+import React, { useState } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { IconButton } from 'react-native-paper';
+import UpdateComment from './UpdateComment';
+import PreviousComments from './PreviousComments';
+import uuid from 'react-native-uuid';
 
-const Comments = ({ comments, business }) => {
-  const output = comments.length ? (
-    <View>
-      {comments.map((comment) => (
-        <Comment key={comment.title} information={comment} />
-      ))}
-    </View>
+const Comments = ({ comments }) => {
+  const [showPreviousComments, setPreviousComments] = useState(false);
+  const updateComment = comments.length ? (
+    <UpdateComment key={uuid.v4()} comment={comments[0]} />
   ) : null;
+  const previousComments =
+    comments.length > 1 ? (
+      <PreviousComments key={uuid.v4()} comments={comments.slice(1)} />
+    ) : null;
 
   return (
-    <View style={styles.backgroundStyle}>
-      <Title style={styles.textStyle}>Recommended Reviews</Title>
-
-      <View style={styles.containerStyle}>
-        <TouchableOpacity onPress={() => Actions.commentForm({ business })}>
-          <Rating
-            type="custom"
-            ratingCount={5}
-            imageSize={20}
-            ratingColor="lightgray"
-            ratingTextColor="lightgray"
-            startingValue={0}
-            readonly={true}
-            style={styles.starStyle}
-          />
-          <Paragraph style={styles.paragraphStyle}>Tap to review...</Paragraph>
-        </TouchableOpacity>
-      </View>
-      {output}
+    <View style={styles.containerStyle}>
+      {updateComment}
+      <IconButton
+        style={{ margin: 0, padding: 0 }}
+        icon={
+          showPreviousComments ? 'arrow-collapse-up' : 'arrow-collapse-down'
+        }
+        color="black"
+        size={15}
+        onPress={() => setPreviousComments(!showPreviousComments)}
+      />
+      {showPreviousComments ? previousComments : null}
     </View>
   );
 };
