@@ -1,5 +1,4 @@
 const express = require('express');
-const morgan = require('morgan');
 const passport = require('passport');
 const compression = require('compression');
 const session = require('express-session');
@@ -10,7 +9,6 @@ const db = require('../db');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sessionStore = new SequelizeStore({ db });
 
-app.use(morgan('dev'));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', parameterLimit: 50000 }));
 
