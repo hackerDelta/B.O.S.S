@@ -9,10 +9,13 @@ import {
   SignIn,
   SignUp,
   SingleBusiness,
-  OwnerFormSignUp
+  OwnerFormSignUp,
+  Prompt,
+  UsersList
 } from './client/components';
 import store from './client/store';
 import { Provider } from 'react-redux';
+
 export default function App() {
   return (
     <Provider store={store}>
@@ -20,6 +23,7 @@ export default function App() {
       <Router>
         <Stack key="root" hideNavBar>
           <Scene key="home" component={HomeScreen} initial />
+          <Scene key="users" component={UsersList} title="Users" />
           <Scene key="signin" component={SignIn} title="SignIn" />
           <Scene key="signup" component={SignUp} title="Signup" />
           <Scene
@@ -38,6 +42,7 @@ export default function App() {
             component={BusinessOwnerProfile}
             title="Owner Profile"
           />
+          <Scene key="prompt" component={Prompt} title="Prompt" />
           <Scene
             key="ownerSignup"
             component={OwnerFormSignUp}

@@ -1,16 +1,13 @@
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Card, Title, Paragraph, IconButton } from 'react-native-paper';
-import { removeBusinessFromServer } from '../store/business';
+import { removeUserFromServer } from '../store/users';
 import { connect } from 'react-redux';
 
-const BusinessCard = ({ business }) => {
-  const { name, address, city, state, postalCode, phone, images } = business;
-  const image = images.length
-    ? images[0]
-    : 'https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png';
+const User = ({ currentUser, user, removeUser }) => {
+  const { firstName, lastName, email, image } = currentUser;
   const handleRemoveClick = (id) => {
-    removeBusiness(id);
+    removeUser(id);
   };
 
   return (
@@ -19,14 +16,12 @@ const BusinessCard = ({ business }) => {
         <IconButton
           size={20}
           icon="close"
-          onPress={() => handleRemoveClick(business.id)}
+          onPress={() => handleRemoveClick(currentUser.id)}
           accessibilityLabel="close"
         />
       ) : null}
-      <Title style={styles.textStyle}>{name}</Title>
-      <Paragraph
-        style={styles.paragraphStyle}
-      >{`${address} \n${city}, ${state} ${postalCode} \n ${phone}`}</Paragraph>
+      <Title style={styles.textStyle}>{`${firstName} ${lastName}`}</Title>
+      <Paragraph style={styles.paragraphStyle}>{`${email} \n`}</Paragraph>
       <Card.Cover style={styles.imageStyle} source={{ uri: `${image}` }} />
     </View>
   );
@@ -39,10 +34,10 @@ const mapState = (state) => {
 };
 
 const mapDispatch = (dispatch) => ({
-  removeBusiness: (id) => dispatch(removeBusinessFromServer(id))
+  removeUser: (id) => dispatch(removeUserFromServer(id))
 });
 
-export default connect(mapState, mapDispatch)(BusinessCard);
+export default connect(mapState, mapDispatch)(User);
 
 const styles = StyleSheet.create({
   backgroundStyle: {

@@ -13,6 +13,8 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import SingleBusiness from './SingleBusiness';
 import OwnerFormSignUp from './OwnerFormSignUp';
+import Prompt from './Prompt';
+import UsersList from './UsersList';
 
 export {
   BusinessCard,
@@ -29,5 +31,7 @@ export {
   Navigation,
   SignIn,
   SignUp,
-  SingleBusiness
+  SingleBusiness,
+  Prompt,
+  UsersList
 };

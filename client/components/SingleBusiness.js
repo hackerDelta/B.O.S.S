@@ -10,18 +10,29 @@ import {
 import { Card, Title, Paragraph, Subheading } from 'react-native-paper';
 import moment from 'moment';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
-import Comments from './Comments';
+import CommentsList from './CommentsList';
 import { Rating } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { fetchBusinessFromServer } from '../store/business';
+import { fetchBusinessFromServer, unmountBusiness } from '../store/business';
+import { fetchCommentsFromServer } from '../store/comments';
 import CarouselOfImages from './CarouselOfImages';
+import Loading from './Loading';
 
 const SingleBusiness = (props) => {
-  const { id, business, fetchBusiness } = props;
+  const { id, fetchBusiness, destroy, fetchComments } = props;
+  let { business } = props;
+  const comments = props.comments;
+
+  useEffect(() => {
+    fetchComments(id);
+    // return () => destroy();
+  }, [comments.length]);
+
   useEffect(() => {
     fetchBusiness(id);
-  }, [props.comments]);
+    return () => destroy();
+  }, []);
 
   const {
     latitude,
@@ -35,9 +46,30 @@ const SingleBusiness = (props) => {
     images,
     hours,
     isClosed,
-    comments,
     owner
   } = business;
+
+  const commentsHash = {};
+
+  if (comments.length) {
+    comments.map((currentComment) => {
+      if (commentsHash[currentComment.user.id]) {
+        commentsHash[currentComment.user.id].unshift(currentComment);
+      } else {
+        commentsHash[currentComment.user.id] = [currentComment];
+      }
+    });
+  }
+
+  const arrayOfComments = [];
+  for (let userId in commentsHash) {
+    const commentsOfUser = commentsHash[userId];
+
+    arrayOfComments.unshift(commentsOfUser);
+  }
+
+  arrayOfComments.sort((a, b) => b[0].updatedAt - a[0].updatedAt);
+
   const JSONifiedHours = hours ? JSON.parse(hours)[0] : { open: [] };
   const hoursOpened = [];
   JSONifiedHours.open.forEach(
@@ -68,11 +100,11 @@ const SingleBusiness = (props) => {
     </View>
   );
   const calculatedTotalRating =
-    comments && comments.length
-      ? comments.reduce(
-          (accumulator, comment) => accumulator + comment.stars,
+    arrayOfComments && arrayOfComments.length
+      ? arrayOfComments.reduce(
+          (accumulator, comments) => accumulator + comments[0].stars,
           0
-        ) / comments.length
+        ) / arrayOfComments.length
       : 0;
 
   const ownerInfo = owner ? (
@@ -146,13 +178,16 @@ const SingleBusiness = (props) => {
               </MapView>
             </View>
             {hoursOutput}
-            <Comments comments={comments} business={business} />
+            <CommentsList
+              arrayOfComments={arrayOfComments}
+              business={business}
+            />
           </View>
         </ScrollView>
       </SafeAreaView>
     );
   } else {
-    return null;
+    return <Loading />;
   }
 };
 
@@ -164,7 +199,9 @@ const mapState = (state) => {
 };
 
 const mapDispatch = (dispatch) => ({
-  fetchBusiness: (id) => dispatch(fetchBusinessFromServer(id))
+  fetchBusiness: (id) => dispatch(fetchBusinessFromServer(id)),
+  destroy: () => dispatch(unmountBusiness()),
+  fetchComments: (id) => dispatch(fetchCommentsFromServer(id))
 });
 
 export default connect(mapState, mapDispatch)(SingleBusiness);
