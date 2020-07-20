@@ -35,7 +35,7 @@ export const authsignup = (firstName, lastName, email, password) => async (
   try {
     dispatch(getUser(response.data));
   } catch (dispatchOrHistoryErr) {
-    console.error(dispatchOrHistoryErr);
+    console.log(dispatchOrHistoryErr);
   }
 };
 
@@ -54,7 +54,7 @@ export const authlogin = (email, password) => async (dispatch) => {
   try {
     dispatch(getUser(response.data));
   } catch (dispatchOrHistoryErr) {
-    console.error(dispatchOrHistoryErr);
+    console.log(dispatchOrHistoryErr);
   }
 };
 
