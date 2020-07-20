@@ -15,7 +15,7 @@ export const fetchOwnerFromServer = (id) => async (dispatch) => {
     const response = await axios.get(`${HOST_WITH_PORT}/api/users/${id}`);
     dispatch(getOwner(response.data));
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 };
 
