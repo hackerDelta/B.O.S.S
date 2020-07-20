@@ -1,6 +1,8 @@
-# Project Title
+# B.O.S.S.
 
-Project is a React Native application that is intended to help bridge the racial wealth gap and strengthen local economies. It provides consumers the ability to browse and search for black-owned businesses that they can support. Business owners can also add themselves and their businesses.
+B.O.S.S. is a React Native application that is intended to help bridge the racial wealth gap and strengthen local economies. It provides consumers the ability to browse and search for black-owned businesses that they can support. Business owners can also add themselves and their businesses.
+
+To run our application, go [here](https://expo.io/@teamhackerdelta/capstone) and click 'Open project in the browser', or if you have an Android phone, scan our QR code to load the application immediately. 
 
 ## Getting Started
 
@@ -8,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- You have installed the latest version of [Node.js](https://nodejs.org/en/) and a package manager (either [npm](https://www.npmjs.com) or [yarn](https://classic.yarnpkg.com/en/)).
+- You have installed the latest version of [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com).
 - You have a Windows/Linux/Mac machine.
 
 ### Installing
@@ -19,14 +21,6 @@ To get acclimated, follow the steps below:
 2. Install [Expo CLI](https://docs.expo.io/get-started/installation/).
 3. Run cd capstone and npm install or yarn install (depending on which package manager you have installed) to install the necessary packages.
 4. Create a database called capstone and capstone-test.
-5. Follow these [steps](https://developers.google.com/maps/gmp-get-started) and create a Google Maps API key.
-6. Depending on your preferences either follow step i or step ii.<br />
-   i) Create a file called .env and store your Google Maps API key there as GOOGLE_MAPS_API_KEY. Your file should look something like:
-   ```
-   GOOGLE_MAPS_API_KEY=<YOUR_API_KEY>
-   ```
-   and then run node createAppJSONFile.js in the terminal, which will automatically create an app.json file.<br />
-   ii) Go to app.json and replace everywhere where it says "<YOUR_API_KEY>" with your newly created Google Maps API key.
 
 ## Running the tests
 
@@ -58,14 +52,18 @@ Add additional notes about how to deploy this on a live system
 - [React Native](https://reactnative.dev) - The framework used to build applications using React.
 - [Expo CLI](https://docs.expo.io) - The framework and platform that helps you develop, build, and deploy iOS, Android, and web applications by using the same JavaScript/TypeScript codebase.
 - [Node.js](https://nodejs.org/en/) - The JavaScript runtime environment used to execute code.
-- [yarn](https://classic.yarnpkg.com/en/) or ([npm](https://www.npmjs.com) - The package manager used to manage package dependencies.
+- [npm](https://www.npmjs.com) - The package manager used to manage package dependencies.
 - [Express](https://expressjs.com) - The JavaScript library used to handle HTTP requests.
 - [Sequelize](https://sequelize.org) - A promise-based Node.js Object-relational mapping used with Postgres.
 - [Axios](https://github.com/axios/axios) - The JavaScript library used to make HTTP requests.
 - [ESlint](https://eslint.org) - The tool used to maintain code quality.
 - [Prettier](https://prettier.io) - The tool used to format code.
-- [React Navigation](https://reactnavigation.org) - The JavaScript library used for routing and navigation in React Native Applications.
+- [React Navigation Router Flux](https://reactnavigation.org) - The JavaScript library used for routing and navigation in React Native Applications.
 - [React Native Paper](https://callstack.github.io/react-native-paper/) - The JavaScript library used to customize screens with production-ready components.
+- [Heroku](https://www.heroku.com/) - The cloud platform used to host our Express server.
+- [React Native Maps](https://github.com/react-native-community/react-native-maps) - The JavaScript library used to build maps and create markers.
+- [React Native Snap Carousel](https://github.com/archriss/react-native-snap-carousel) - The JavaScript library used to create a carousel.
+- [React Native Uuid](https://github.com/eugenehp/react-native-uuid) - The JavaScript library used to generated UUIDs.
 
 ## Contributing
 
