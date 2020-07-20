@@ -28,12 +28,19 @@ const CommentForm = ({ business, user, createComment }) => {
   const [photo, setPhoto] = useState('');
 
   const handleSubmitClick = () => {
-    // if (!userId) {
-    //   Actions.prompt();
-    // } else {
-    createComment({ businessId, userId: 1, title, comment, stars, photo });
-    Actions.business({ id: businessId });
-    // }
+    if (!userId) {
+      Actions.prompt();
+    } else {
+      createComment(businessId, {
+        businessId,
+        userId,
+        title,
+        comment,
+        stars,
+        photo
+      });
+      Actions.business({ id: businessId });
+    }
   };
 
   const pickImage = async () => {
@@ -49,8 +56,6 @@ const CommentForm = ({ business, user, createComment }) => {
       if (!result.cancelled) {
         setPhoto(result.base64);
       }
-
-      console.log('result', result);
     } catch (error) {
       setErrorMessage(error);
     }
@@ -84,12 +89,12 @@ const CommentForm = ({ business, user, createComment }) => {
           imageSize={20}
           startingValue={0}
           readonly={false}
-          onChangeText={(rating) => setStars(rating)}
           style={{
             alignSelf: 'flex-start',
             marginTop: '5%',
             marginBottom: '5%'
           }}
+          onFinishRating={(rating) => setStars(rating)}
         />
         <TextInput
           placeholder="Great!"
@@ -134,8 +139,6 @@ const CommentForm = ({ business, user, createComment }) => {
             />
           </View>
         ) : null}
-
-        {/* ))} */}
         <TouchableOpacity style={styles.button} onPress={handleSubmitClick}>
           <Text style={styles.textStyle}>Submit</Text>
         </TouchableOpacity>
