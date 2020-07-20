@@ -1,51 +1,55 @@
 import * as React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
-import { Paragraph } from 'react-native-paper';
+import { Paragraph, IconButton } from 'react-native-paper';
 import { Rating } from 'react-native-elements';
-// import base64 from 'base64-js'
-import { FileSystem } from 'expo';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { removeCommentFromServer } from '../store/comments';
+import { connect } from 'react-redux';
 
-import Base64ArrayBuffer from 'base64-arraybuffer';
-
-// const Buffer = require("buffer").Buffer;
-// import base64 from 'react-native-base64'
-
-// import FileSystem from 'expo-file-system'
-// import Base64ArrayBuffer from 'base64-arraybuffer';
-// import base64js from 'base64-js'
-// var binaryToBase64 = require('binaryToBase64');
-// import Base64ArrayBuffer from 'base64-arraybuffer';
-
-// import { fs } from 'rn-fetch-blob';
-
-const Comment = ({ information }) => {
-  const { title, comment, stars, user, photo } = information;
+const Comment = (props) => {
+  const { removeComment, information, type } = props;
+  const {
+    id,
+    title,
+    comment,
+    stars,
+    user,
+    photo,
+    createdAt,
+    updatedAt
+  } = information;
   const { firstName, lastName, image } = user;
 
-  // const photoURI = photo ? Base64ArrayBuffer.encode(photo.data) : null;
-  // console.log(photoURI)
-  // const blobToBase64 = async (data, encoding = 'base64') => {
-  //   const x = await fs.readFile(data, encoding);
-  //   return x;
-  // }
+  const typeOutput =
+    type === 'update' ? (
+      <MaterialCommunityIcons name="update" size={15} color="black" />
+    ) : null;
+  const date =
+    updatedAt !== createdAt || type === 'update'
+      ? `Updated Review ${new Date(createdAt).toDateString()}`
+      : updatedAt === createdAt && type === 'previous'
+      ? `Previous Review ${new Date(updatedAt).toDateString()}`
+      : `${new Date(updatedAt).toDateString()}`;
 
-  // console.log(photo ? base64.encode(photo.data) : console.log('nope'))
-
-  // const signature = await FileSystem.readAsStringAsync(item.signature, { encoding: FileSystem.EncodingTypes.Base64 })
-
-  const photosOutput = photo ? (
-    <Image
-      key={photo}
-      style={styles.photoStyle}
-      source={{
-        uri: `data:image/jpeg;base64,${Base64ArrayBuffer.encode(photo.data)}`
-      }}
-    />
-  ) : null;
+  const handleRemoveClick = (id) => {
+    removeComment(id);
+  };
 
   return (
-    <View style={styles.backgroundStyle}>
-      <Text>{title}</Text>
+    <View>
+      <Text>
+        {title} {typeOutput} {date}
+      </Text>
+      {(props.user && props.user.isAdmin) ||
+      (props.user && props.user.id === user.id) ? (
+        <IconButton
+          style={{ alignSelf: 'baseline', margin: 0, padding: 0 }}
+          size={20}
+          icon="delete"
+          onPress={() => handleRemoveClick(id)}
+          accessibilityLabel="close"
+        />
+      ) : null}
       <Rating
         type="custom"
         ratingCount={5}
@@ -57,7 +61,6 @@ const Comment = ({ information }) => {
       <Image style={styles.imageStyle} source={{ uri: `${image}` }} />
       <Paragraph>{`${firstName} ${lastName}`}</Paragraph>
       <Paragraph>{comment}</Paragraph>
-      {photosOutput}
     </View>
   );
 };
@@ -66,6 +69,14 @@ const styles = StyleSheet.create({
   backgroundStyle: {
     margin: '5%',
     marginBottom: '3%'
+  },
+  containerStyle: {
+    margin: '5%',
+    marginBottom: '3%',
+    textAlign: 'left',
+    borderColor: 'lightgray',
+    borderWidth: 1,
+    padding: '1%'
   },
   photoStyle: {
     width: 100,
@@ -84,4 +95,14 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Comment;
+const mapState = (state) => {
+  return {
+    user: state.user
+  };
+};
+
+const mapDispatch = (dispatch) => ({
+  removeComment: (id) => dispatch(removeCommentFromServer(id))
+});
+
+export default connect(mapState, mapDispatch)(Comment);
