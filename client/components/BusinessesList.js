@@ -116,7 +116,8 @@ const BusinessesList = ({ businesses, fetchBusinesses }) => {
 
 const mapState = (state) => {
   return {
-    businesses: state.businesses
+    businesses: state.businesses,
+    user: state.user
   };
 };
 
