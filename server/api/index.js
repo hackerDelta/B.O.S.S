@@ -23,7 +23,6 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-require('../../secrets');
 app.use(compression());
 
 app.use(
