@@ -4,7 +4,7 @@ import { Card, Title, Paragraph, IconButton } from 'react-native-paper';
 import { removeBusinessFromServer } from '../store/business';
 import { connect } from 'react-redux';
 
-const BusinessCard = ({ business }) => {
+const BusinessCard = ({ business, user, removeBusiness }) => {
   const { name, address, city, state, postalCode, phone, images } = business;
   const image = images.length
     ? images[0]
@@ -13,7 +13,7 @@ const BusinessCard = ({ business }) => {
     removeBusiness(id);
   };
 
-  const user = state.user;
+  // const user = state.user;
 
   return (
     <View style={styles.backgroundStyle}>
