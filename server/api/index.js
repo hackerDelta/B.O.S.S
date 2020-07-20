@@ -25,12 +25,11 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-require('../../secrets');
 app.use(compression());
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET || 'my best friend is Cody',
+    secret: 'my best friend is Cody',
     store: sessionStore,
     resave: false,
     saveUninitialized: false
