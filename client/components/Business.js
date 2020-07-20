@@ -1,15 +1,28 @@
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Card, Title, Paragraph } from 'react-native-paper';
+import { Card, Title, Paragraph, IconButton } from 'react-native-paper';
+import { removeBusinessFromServer } from '../store/business';
+import { connect } from 'react-redux';
 
-const Business = ({ business }) => {
+const Business = ({ user, business, removeBusiness }) => {
   const { name, address, city, state, postalCode, phone, images } = business;
   const image = images.length
     ? images[0]
     : 'https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png';
+  const handleRemoveClick = (id) => {
+    removeBusiness(id);
+  };
 
   return (
     <View style={styles.backgroundStyle}>
+      {user && user.isAdmin ? (
+        <IconButton
+          size={20}
+          icon="close"
+          onPress={() => handleRemoveClick(business.id)}
+          accessibilityLabel="close"
+        />
+      ) : null}
       <Title style={styles.textStyle}>{name}</Title>
       <Paragraph
         style={styles.paragraphStyle}
@@ -18,6 +31,18 @@ const Business = ({ business }) => {
     </View>
   );
 };
+
+const mapState = (state) => {
+  return {
+    user: state.user
+  };
+};
+
+const mapDispatch = (dispatch) => ({
+  removeBusiness: (id) => dispatch(removeBusinessFromServer(id))
+});
+
+export default connect(mapState, mapDispatch)(Business);
 
 const styles = StyleSheet.create({
   backgroundStyle: {
@@ -38,5 +63,3 @@ const styles = StyleSheet.create({
     fontSize: 18
   }
 });
-
-export default Business;
