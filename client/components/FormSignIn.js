@@ -10,8 +10,6 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Logo from './Logo';
-import FormSignIn from './FormSignIn';
-import SignUp from './SignUp';
 import { connect } from 'react-redux';
 import { auth } from '../store/user';
 

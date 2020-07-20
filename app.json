@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "B.O.S.S.",
+    "slug": "BOSS",
+    "version": "1.0.0",
+    "description": "B.O.S.S. is a React Native mobile application built with Expo that is intended to help bridge the racial wealth gap and strengthen local economies. B.O.S.S. stands for Black Owned Support System. It provides consumers the ability to browse for black-owned businesses that they can support.",
+    "githubUrl": "https://github.com/hackerDelta/B.O.S.S",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/lastone.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "config": {
+        "googleMapsApiKey": "<YOUR_API_KEY>"
+      },
+      "infoPlist": {
+        "UIBackgroundModes": ["location", "fetch"]
+      }
+    },
+    "android": {
+      "config": {
+        "googleMaps": {
+          "apiKey": "<YOUR_API_KEY>"
+        }
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

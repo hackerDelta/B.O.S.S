@@ -13,6 +13,8 @@ const BusinessCard = ({ business }) => {
     removeBusiness(id);
   };
 
+  const user = state.user;
+
   return (
     <View style={styles.backgroundStyle}>
       {user && user.isAdmin ? (
