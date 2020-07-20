@@ -16,3 +16,5 @@ secret.js
 .DS_Store
 
 .vscode
+
+secrets.js

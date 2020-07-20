@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { HOST_WITH_PORT } from '../../environment';
 
 const GET_USERS = 'GET_USERS';
 
@@ -34,7 +33,9 @@ const defaultUsers = [];
 
 export const fetchUsersFromServer = () => async (dispatch) => {
   try {
-    const response = await axios.get(`${HOST_WITH_PORT}/api/users`);
+    const response = await axios.get(
+      'https://hackerdelta-capstone.herokuapp.com/api/users'
+    );
     dispatch(getUsers(response.data));
   } catch (err) {
     console.log(err);
@@ -43,7 +44,9 @@ export const fetchUsersFromServer = () => async (dispatch) => {
 
 export const removeUserFromServer = (id) => async (dispatch) => {
   try {
-    await axios.delete(`${HOST_WITH_PORT}/api/users/${id}`);
+    await axios.delete(
+      `https://hackerdelta-capstone.herokuapp.com/api/users/${id}`
+    );
     dispatch(removeUser(id));
   } catch (err) {
     console.log(err);
@@ -52,7 +55,10 @@ export const removeUserFromServer = (id) => async (dispatch) => {
 
 export const updateUserFromServer = (id, user) => async (dispatch) => {
   try {
-    const response = await axios.put(`${HOST_WITH_PORT}/api/users/${id}`, user);
+    const response = await axios.put(
+      `https://hackerdelta-capstone.herokuapp.com/api/users/${id}`,
+      user
+    );
     dispatch(updateUser(response.data));
   } catch (err) {
     console.log(err);
@@ -61,7 +67,10 @@ export const updateUserFromServer = (id, user) => async (dispatch) => {
 
 export const createUserFromServer = (id, user) => async (dispatch) => {
   try {
-    const response = await axios.post(`${HOST_WITH_PORT}/api/users/`, user);
+    const response = await axios.post(
+      'https://hackerdelta-capstone.herokuapp.com/api/users/',
+      user
+    );
     dispatch(createUser(response.data));
   } catch (err) {
     console.log(err);

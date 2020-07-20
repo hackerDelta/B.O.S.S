@@ -2,7 +2,8 @@
   "name": "capstone",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
+    "start": "node ./server/api/index",
+    "expo": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -11,8 +12,7 @@
     "lint-fix": "npm run lint --fix",
     "prettify": "prettier --write \"**/*.{js,jsx,json,css,scss,md}\"",
     "fix-js": "eslint-auto-fix",
-    "seed": "node ./script/seed.js",
-    "start-server": "nodemon ./server/api/index"
+    "seed": "node ./script/seed.js"
   },
   "husky": {
     "hooks": {

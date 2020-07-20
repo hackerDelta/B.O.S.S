@@ -4,7 +4,7 @@ import { Card, Title, Paragraph, IconButton } from 'react-native-paper';
 import { removeBusinessFromServer } from '../store/business';
 import { connect } from 'react-redux';
 
-const Business = ({ user, business, removeBusiness }) => {
+const BusinessCard = ({ business }) => {
   const { name, address, city, state, postalCode, phone, images } = business;
   const image = images.length
     ? images[0]
@@ -42,7 +42,7 @@ const mapDispatch = (dispatch) => ({
   removeBusiness: (id) => dispatch(removeBusinessFromServer(id))
 });
 
-export default connect(mapState, mapDispatch)(Business);
+export default connect(mapState, mapDispatch)(BusinessCard);
 
 const styles = StyleSheet.create({
   backgroundStyle: {

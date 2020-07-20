@@ -4,7 +4,7 @@ const passport = require('passport');
 const compression = require('compression');
 const session = require('express-session');
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const db = require('../db');
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store);

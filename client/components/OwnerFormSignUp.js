@@ -10,7 +10,6 @@ import {
 import { Actions } from 'react-native-router-flux';
 import Logo from './Logo';
 import axios from 'axios';
-import { HOST_WITH_PORT } from '../../environment';
 
 const OwnerFormSignUp = () => {
   const [firstName, setFirstName] = useState('');
@@ -30,10 +29,16 @@ const OwnerFormSignUp = () => {
         isBusinessOwner: true
       };
       await axios.post(
-        `${HOST_WITH_PORT}/api/users`,
+        `https://hackerdelta-capstone.herokuapp.com/api/users`,
         newOwner,
         Actions.signin()
       );
+      setFirstName('');
+      setLastName('');
+      setCompanyName('');
+      setCompanyAddress('');
+      setEmail('');
+      setPassword('');
     } catch (error) {
       console.log(error);
     }

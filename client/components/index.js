@@ -1,4 +1,4 @@
-import Business from './Business';
+import BusinessCard from './BusinessCard';
 import BusinessOwnerProfile from './BusinessOwnerProfile';
 import BusinessesList from './BusinessesList';
 import Comment from './Comment';
@@ -17,7 +17,7 @@ import Prompt from './Prompt';
 import UsersList from './UsersList';
 
 export {
-  Business,
+  BusinessCard,
   BusinessOwnerProfile,
   BusinessesList,
   Comment,
