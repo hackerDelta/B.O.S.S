@@ -31,17 +31,21 @@ const defaultComments = [];
 
 export const fetchCommentsFromServer = (id) => async (dispatch) => {
   try {
-    const response = await axios.get(`${HOST_WITH_PORT}/api/businesses/${id}`);
-    dispatch(getComments(response.data.comments));
+    const response = await axios.get(
+      `${HOST_WITH_PORT}/api/businesses/${id}/comments`
+    );
+    dispatch(getComments(response.data));
   } catch (err) {
     console.log(err);
   }
 };
 
-export const createCommentFromServer = (comment) => async (dispatch) => {
+export const createCommentFromServer = (businessId, comment) => async (
+  dispatch
+) => {
   try {
     const response = await axios.post(
-      `${HOST_WITH_PORT}/api/comments`,
+      `${HOST_WITH_PORT}/api/businesses/${businessId}/comments`,
       comment
     );
     dispatch(createComment(response.data));
@@ -76,7 +80,7 @@ export default function commentsReducer(state = defaultComments, action) {
     case GET_COMMENTS:
       return action.comments;
     case CREATE_COMMENT:
-      return [...action.comments, state];
+      return [action.comment, ...state];
     case UPDATE_COMMENT:
       return state.map((comment) =>
         comment.id === action.id ? action.comment : comment
