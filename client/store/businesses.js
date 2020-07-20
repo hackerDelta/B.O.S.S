@@ -37,7 +37,7 @@ export const fetchBusinessesFromServer = () => async (dispatch) => {
     const response = await axios.get(`${HOST_WITH_PORT}/api/businesses`);
     dispatch(getBusinesses(response.data));
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 };
 
