@@ -81,7 +81,7 @@
     "redux-thunk": "^2.3.0",
     "rn-fetch-blob": "^0.12.0",
     "sequelize": "^6.3.0",
-    "socket.io": "^2.3.0",
+    "socket.io": "^2.5.0",
     "yelp-fusion": "^3.0.0"
   },
   "devDependencies": {
